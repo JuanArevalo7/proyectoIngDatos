@@ -112,4 +112,4 @@ where idFactura=new.idFacturaFK);
 END IF;
 END $$
 DELIMITER ;
-SELECT * FROM facturaCompleta
+SELECT * FROM facturaCompleta;
