@@ -72,8 +72,8 @@ SELECT * FROM conductor where estadoConductor='f';
 DELIMITER $$
 CREATE PROCEDURE consultarMayorGasto(in idFactura int)
 BEGIN 
-SELECT idFacturaFK  as "numero de factura",valorGasto FROM gastofactura
-INNER JOIN gasto  on idGastoFK=idGasto
+SELECT idFacturaFK  as "numero de factura",valorGasto,g.descripcionGasto FROM gastofactura
+INNER JOIN gasto g on idGastoFK=idGasto
 where idFacturaFK=idFactura
 order by valorGasto desc limit 1;
 END $$
