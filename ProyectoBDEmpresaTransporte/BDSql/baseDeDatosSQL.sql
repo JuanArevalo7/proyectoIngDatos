@@ -57,7 +57,7 @@ CONSTRAINT llaveFacturaFK FOREIGN KEY(idFacturaFK) REFERENCES factura(idFactura)
 CONSTRAINT llaveGastoFK FOREIGN KEY(idGastoFK) REFERENCES gasto(idGasto) ON DELETE SET NULL
 );
 ALTER TABLE CONDUCTOR 
-ADD COLUMN estadoConductor ENUM('t','f');
+ADD COLUMN estadoConductor ENUM("pendiente","activo");
 /* CREACION DE VISTA PARA VEHICULOS ACTIVOS E INACTIVOS*/
 CREATE VIEW vehiculosInactivos as 
 SELECT * FROM vehiculo where estadoVehiculo = 'f';
