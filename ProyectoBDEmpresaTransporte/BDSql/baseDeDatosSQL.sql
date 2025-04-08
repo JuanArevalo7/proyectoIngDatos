@@ -2,7 +2,7 @@ CREATE DATABASE TRANSPORTADORA;
 USE TRANSPORTADORA;
 CREATE TABLE CONDUCTOR(
 idConductor INT AUTO_INCREMENT PRIMARY KEY,
-nombreCOnductor VARCHAR(20),
+nombreConductor VARCHAR(20),
 docConductor INT NOT NULL UNIQUE,
 numViajes INT DEFAULT 0,
 numMultas INT DEFAULT 0,
@@ -57,22 +57,26 @@ CONSTRAINT llaveFacturaFK FOREIGN KEY(idFacturaFK) REFERENCES factura(idFactura)
 CONSTRAINT llaveGastoFK FOREIGN KEY(idGastoFK) REFERENCES gasto(idGasto) ON DELETE SET NULL
 );
 ALTER TABLE CONDUCTOR 
-ADD COLUMN estadoConductor ENUM("pendiente","activo");
+ADD COLUMN estadoConductor ENUM("activo","inactivo");
+ALTER TABLE GASTO
+ADD COLUMN nombreGasto varchar(20);
+ALTER TABLE GASTO
+MODIFY COLUMN descripcionGasto varchar(40);
 /* CREACION DE VISTA PARA VEHICULOS ACTIVOS E INACTIVOS*/
 CREATE VIEW vehiculosInactivos as 
-SELECT * FROM vehiculo where estadoVehiculo = 'f';
+SELECT * FROM vehiculo where estadoVehiculo = 'inactivo';
 CREATE VIEW vehiculosActivos as 
-SELECT * FROM vehiculo where estadoVehiculo='t';
+SELECT * FROM vehiculo where estadoVehiculo='activo';
 /* CREACION DE VISTA PARA CONDUCTORES ACTIVOS E INACTIVOS */
 CREATE VIEW conductoresActivos as
-SELECT * from conductor where estadoConductor='t';
+SELECT * from conductor where estadoConductor='activo';
 CREATE VIEW conductoresInactivos as
-SELECT * FROM conductor where estadoConductor='f';
+SELECT * FROM conductor where estadoConductor='inactivo';
 /* consultar el mayor gasto de una factura*/
 DELIMITER $$
 CREATE PROCEDURE consultarMayorGasto(in idFactura int)
 BEGIN 
-SELECT idFacturaFK  as "numero de factura",valorGasto,g.descripcionGasto FROM gastofactura
+SELECT idFacturaFK  as "numero de factura",valorGasto,g.nombreGasto,g.descripcionGasto FROM gastofactura
 INNER JOIN gasto g on idGastoFK=idGasto
 where idFacturaFK=idFactura
 order by valorGasto desc limit 1;
