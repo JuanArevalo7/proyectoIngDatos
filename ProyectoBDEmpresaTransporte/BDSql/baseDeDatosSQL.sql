@@ -33,7 +33,6 @@ duracionEstimada varchar(20),
 numEscalas int);
 CREATE TABLE GASTO(
 idGasto INT PRIMARY KEY AUTO_INCREMENT,
-valorGasto DOUBLE(11,3) NOT NULL,
 descripcionGasto VARCHAR(20)
 );
 CREATE TABLE FACTURA(
@@ -51,6 +50,7 @@ CONSTRAINT llaveVehiculo FOREIGN KEY(idVehiculoFK) REFERENCES vehiculo(IdVehicul
 );
 CREATE TABLE gastoFactura(
 idRegistro INT PRIMARY KEY AUTO_INCREMENT,
+valorGasto DOUBLE(11,3) NOT NULL,
 idFacturaFK INT ,
 idGastoFK INT ,
 CONSTRAINT llaveFacturaFK FOREIGN KEY(idFacturaFK) REFERENCES factura(idFactura) ON DELETE SET NULL,
@@ -99,7 +99,7 @@ END $$
 DELIMITER ;
 /* TRIGGER PARA AÑADIR MULTAS A UN CONDCTOR */
 DELIMITER $$
-CREATE TRIGGER añadirReparaciones AFTER INSERT ON gastoFactura FOR EACH ROW
+CREATE TRIGGER añadirMultas AFTER INSERT ON gastoFactura FOR EACH ROW
 BEGIN 
 IF NEW.idgastoFK IN (2,3) THEN
 UPDATE conductor
@@ -108,3 +108,4 @@ where idFactura=new.idFacturaFK);
 END IF;
 END $$
 DELIMITER ;
+SELECT * FROM facturaCompleta
