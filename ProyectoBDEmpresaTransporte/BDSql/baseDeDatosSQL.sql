@@ -56,3 +56,55 @@ idGastoFK INT ,
 CONSTRAINT llaveFacturaFK FOREIGN KEY(idFacturaFK) REFERENCES factura(idFactura) ON DELETE SET NULL,
 CONSTRAINT llaveGastoFK FOREIGN KEY(idGastoFK) REFERENCES gasto(idGasto) ON DELETE SET NULL
 );
+ALTER TABLE CONDUCTOR 
+ADD COLUMN estadoConductor ENUM('t','f');
+/* CREACION DE VISTA PARA VEHICULOS ACTIVOS E INACTIVOS*/
+CREATE VIEW vehiculosInactivos as 
+SELECT * FROM vehiculo where estadoVehiculo = 'f';
+CREATE VIEW vehiculosActivos as 
+SELECT * FROM vehiculo where estadoVehiculo='t';
+/* CREACION DE VISTA PARA CONDUCTORES ACTIVOS E INACTIVOS */
+CREATE VIEW conductoresActivos as
+SELECT * from conductor where estadoConductor='t';
+CREATE VIEW conductoresInactivos as
+SELECT * FROM conductor where estadoConductor='f';
+/* consultar el mayor gasto de una factura*/
+DELIMITER $$
+CREATE PROCEDURE consultarMayorGasto(in idFactura int)
+BEGIN 
+SELECT idFacturaFK  as "numero de factura",valorGasto FROM gastofactura
+INNER JOIN gasto  on idGastoFK=idGasto
+where idFacturaFK=idFactura
+order by valorGasto desc limit 1;
+END $$
+DELIMITER ;
+/* MEJOR VISUALIZACION DE LAS FACTURAS*/
+CREATE VIEW facturaCompleta as
+SELECT f.valorViaje,f.utilidadesVIaje,v.lugarOrigen,v.lugarDestino,c.nombreConductor as "conductor",ve.marcaVehiculo,
+ve.placaVehiculo  FROM factura f 
+INNER JOIN viaje v on v.idVIaje=f.idViajeFK
+INNER JOIN conductor c on c.idConductor=f.idConductorFK
+INNER JOIN vehiculo ve on ve.idVehiculo=f.idVehiculoFK
+INNER JOIN cliente cl on cl.idCliente=f.idCLienteFK;
+/* TRIGGER PARA AÑADIR REPARACIONES A UN VEHICULO AUTOMATICAMENTE*/ 
+DELIMITER $$
+CREATE TRIGGER añadirReparaciones AFTER INSERT ON gastoFactura FOR EACH ROW
+BEGIN 
+IF NEW.IDGASTOFK IN (1,2,3) THEN
+UPDATE VEHICULO 
+SET cantidadReparaciones=cantidadReparaciones+1 WHERE idVehiculo=(select idVehiculoFK from factura
+where idFactura=new.idFacturaFK);
+END IF;
+END $$
+DELIMITER ;
+/* TRIGGER PARA AÑADIR MULTAS A UN CONDCTOR */
+DELIMITER $$
+CREATE TRIGGER añadirReparaciones AFTER INSERT ON gastoFactura FOR EACH ROW
+BEGIN 
+IF NEW.idgastoFK IN (2,3) THEN
+UPDATE conductor
+SET numMultas=numMultas+1 WHERE idConductor=(select idConductorFK from factura
+where idFactura=new.idFacturaFK);
+END IF;
+END $$
+DELIMITER ;
