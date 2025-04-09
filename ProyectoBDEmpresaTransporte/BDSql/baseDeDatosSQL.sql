@@ -1,5 +1,6 @@
-CREATE DATABASE TRANSPORTADORA;
-USE TRANSPORTADORA;
+DROP DATABASE prueba1;
+CREATE DATABASE prueba1;
+USE prueba1;
 CREATE TABLE CONDUCTOR(
 idConductor INT AUTO_INCREMENT PRIMARY KEY,
 nombreConductor VARCHAR(20),
@@ -188,7 +189,24 @@ WHERE tipoCLiente='natural';
 SELECT * FROM CLIENTE 
 WHERE tipoCLiente='juridico';
 SELECT * FROM CLIENTE WHERE contactoCliente is not null;
-/* consulta especifica */
+/* consulta especifica tabla conductor */
+SELECT nombreConductor,numMultas,numeroContacto FROM conductor
+WHERE numMultas>0;
+SELECT nombreConductor,numMultas,numeroContacto FROM conductor
+WHERE numViajes>50;
+SELECT nombreConductor,numMultas,numeroContacto FROM conductor
+WHERE EpsConductor IS NULL;
+SELECT nombreConductor,numeroContacto,numMultas FROM conductor
+WHERE numViajes<>0
+ORDER BY numMultas asc;
+SELECT nombreConductor,numViajes FROM conductor 
+ORDER BY numViajes DESC LIMIT 5;
+/* CONSULTAS ESPECIFICAS VEHICULO*/
+SELECT idVehiculo, placaVehiculo from Vehiculo 
+WHERE soatVehiculo='pendiente';
+SELECT * FROM VEHICULO;
+SELECT placaVehiculo,marcaVehiculo from Vehiculo
+where 
 /* prueba de las vistas */
 SELECT * FROM conductoresActivos;
 SELECT * FROM conductoresInactivos;
@@ -198,3 +216,4 @@ SELECT * FROM VEHICULOSINACTIVOS;
 SELECT * FROM gastoFactura;
 /* prueba del procedimiento almacendado*/
 CALL consultarMayorGasto(1);
+/*	*/
