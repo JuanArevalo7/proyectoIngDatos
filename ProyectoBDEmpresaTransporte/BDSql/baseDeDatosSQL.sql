@@ -1,6 +1,6 @@
-DROP DATABASE basedeDatosSQL;
-CREATE DATABASE basedeDatosSQL;
-USE basedeDatosSQL;
+DROP DATABASE CONSTRUCTORA;
+CREATE DATABASE CONSTRUCTORA;
+USE CONSTRUCTORA;
 CREATE TABLE CONDUCTOR(
 idConductor INT AUTO_INCREMENT PRIMARY KEY,
 nombreConductor VARCHAR(20) not null,
@@ -110,6 +110,54 @@ WHERE idConductor=idCon;
 END $$
 DELIMITER ;
 /*ACTUIALIZAR EPS CONDUCTOR POR ID*/
+DELIMITER $$
+CREATE PROCEDURE actualizarEPS (IN idModif int, nuevaEPs varchar(20))
+BEGIN 
+UPDATE conductor
+SET EpsConductor=nuevaEps WHERE idConductor=idModif;
+END $$
+DELIMITER ;
+/*CREATE PROCEDURE ACTUALIZAR CONTACTO*/
+DELIMITER $$
+CREATE PROCEDURE actualizarCont(in idConduct INT,nuevoCont BIGINT)
+BEGIN
+UPDATE conductor
+SET numeroContacto=nuevoCont
+WHERE idConduct=idConductor;
+END $$
+DELIMTIER ;
+DELIMITER $$
+CREATE PROCEDURE actualizarDur(IN idCambio INT,durNueva varchar(20))
+BEGIN
+UPDATE viaje
+SET duracionEstimada=durNueva
+WHERE idCambio=idViaje;
+END $$
+DELIMITER ;
+DELIMITER $$
+CREATE PROCEDURE actualizarEsc(IN idCambio INT,escalas bigint)
+BEGIN
+UPDATE viaje
+SET numEscalas=escalas
+WHERE idCambio=idViaje;
+END $$
+DELIMITER ;
+DELIMITER $$
+CREATE PROCEDURE cambiarEstado(IN idCambio INT,estado varchar(20))
+BEGIN
+UPDATE vehiculo
+SET estadoVehiculo=estado
+WHERE idVehiculo=idCambio;
+END $$
+DELIMITER ;
+DELIMITER $$
+CREATE PROCEDURE cambiarSoat(IN idCambio INT,estado varchar(20))
+BEGIN
+UPDATE vehiculo
+SET SoatVehiculo=estado
+WHERE idVehiculo=idCambio;
+END $$
+DELIMITER ;
 /* MEJOR VISUALIZACION DE LAS FACTURAS*/
 CREATE VIEW facturaCompleta as
 SELECT f.valorViaje,f.utilidadesVIaje,v.lugarOrigen,v.lugarDestino,c.nombreConductor as "conductor" ,cl.nombreCliente ,ve.marcaVehiculo,
@@ -118,6 +166,9 @@ INNER JOIN viaje v on v.idVIaje=f.idViajeFK
 INNER JOIN conductor c on c.idConductor=f.idConductorFK
 INNER JOIN vehiculo ve on ve.idVehiculo=f.idVehiculoFK
 INNER JOIN cliente cl on cl.idCliente=f.idCLienteFK;
+CREATE VIEW mejorClientes as
+SELECT idClienteFK as "id cliente",sum(valorviaje) as "total que ha pagado a la empresa"  FROM FACTURA
+GROUP BY idClienteFK ORDER BY  sum(valorviaje)  DESC LIMIT 5;
 /* TRIGGER PARA AÑADIR REPARACIONES A UN VEHICULO AUTOMATICAMENTE*/ 
 DELIMITER $$
 CREATE TRIGGER añadirReparaciones AFTER INSERT ON gastoFactura FOR EACH ROW
@@ -145,23 +196,6 @@ CREATE TRIGGER añadirViaje AFTER INSERT ON Factura FOR EACH ROW
 BEGIN 
 UPDATE conductor
 SET numViajes=numViajes+1 WHERE idConductor=new.idConductorFK;
-END $$
-DELIMITER ;
-/* trigger para calcular automaticamente las utilidades */
-DELIMITER $$
-CREATE TRIGGER actualizarUtilidades
-AFTER INSERT ON gastoFactura
-FOR EACH ROW
-BEGIN
-  DECLARE totalGastos DOUBLE;
-  SELECT SUM(valorGasto)
-  INTO totalGastos
-  FROM gastoFactura
-  WHERE idFacturaFK = NEW.idFacturaFK;
-
-  UPDATE factura
-  SET utilidadesViaje = valorViaje - totalGastos
-  WHERE idFactura = NEW.idFacturaFK;
 END $$
 DELIMITER ;
 INSERT INTO gasto (descripcionGasto, tipoGasto, nombreGasto)
@@ -205,6 +239,7 @@ SELECT * FROM VIAJE;
 select marcaVehiculo,estadoVehiculo,colorVehiculo,soatVehiculo from VEHICULO;
 /* consulta basica taba gasto*/
 SELECT nombreGasto,descripcionGasto,tipoGasto from gasto;
+
 /* consulta basica factura*/
 select idFactura,valorViaje,utilidadesViaje from factura;
 select valorGasto,idFacturaFK,idGastoFK from gastofactura;
@@ -265,9 +300,37 @@ CALL consultarConductor(2);
 /* consultar eps por conductor*/
 CALL consultarEPS(1);
 /*ACTUALIZAR EPS POR ID CONDUCTOR*/
-/* CONSULTAS MULTITABLA */
-
-SELECT * FROM aca ;
+CALL actualizarEps(1,"compensar");
+/*ACTUALIZAR CONTACTO CONDUCTOR POR ID*/
+call actualizarCont(1,3053524931);
+/* CONSULTAR LOS VIAJES DE UN CONDUCTOR*/
+ SELECT nombreConductor,lugarOrigen,lugarDestino FROM FACTURA
+ INNER JOIN CONDUCTOR ON idConductorFK=idConductor
+ INNER JOIN VIAJE ON idVIaje=idViajeFK;
+ /* INFORMACION MULTAS DE UN CONDUCTOR*/
+ SELECT valorGasto,nombreConductor,descripcionGasto FROM GASTOFACTURA 
+ INNER JOIN GASTO on idGasto=idGastoFK
+ INNER JOIN FACTURA ON idFacturaFK=idFactura
+ INNER JOIN CONDUCTOR ON idConductorFK=idConductor
+ WHERE idConductorFK=1 and idGasto=2;
+/*RQFS VIAJE*/
+SELECT lugarOrigen,LugarDestino, duracionEstimada FROM viaje;
+CALL ActualizarDur(1,"12 horas");
+CALL actualizarEsc(1,2);
+SELECT * FROM VIAJE;
+/*RQFS VEIHCULO*/
+CALL cambiarEstado(1,"activo");
+SELECT SoatVehiculo,placaVehiculo from VEHICULO;
+SELECT * FROM vehiculo ;
+SELECT placaVehiculo,marcaVehiculo,colorVehiculo FROM vehiculo;
+SELECT placaVehiculo,valorImpuesto FROM vehiculo;
+CALL cambiarSoat(1,"pendiente");
+SELECT * FROM VEHICULOSACTIVOS;
+SELECT * FROM VEHICULOSINACTIVOS;
+SELECT placaVehiculo,cantidadReparaciones FROM vehiculo;
+/*rqfs gasto*/
+SELECT idFacturaFK as "facatura",valorgasto,descripcionGasto from gastoFactura Ç
+INNER JOIN GASTO ON idGastofK=idGasto;
 /* prueba de las vistas */
 SELECT * FROM conductoresActivos;
 SELECT * FROM conductoresInactivos;
@@ -275,9 +338,8 @@ SELECT * FROM facturaCompleta;
 SELECT * FROM VEHICULOSACTIVOS;
 SELECT * FROM VEHICULOSINACTIVOS;
 SELECT * FROM gastoFactura;
+SELECT * FROM mejorClientes;
 /* prueba del procedimiento almacendado*/
 CALL consultarMayorGasto(1);
 CALL consultarMayorGasto(2);
-/*	*/
-/* PROCEDURE PARA CONSULTAR CONDUCTOR POR DOC*/
 
