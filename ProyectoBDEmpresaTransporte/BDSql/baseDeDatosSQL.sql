@@ -1,73 +1,82 @@
 DROP DATABASE prueba1;
 CREATE DATABASE prueba1;
 USE prueba1;
+
 CREATE TABLE CONDUCTOR(
 idConductor INT AUTO_INCREMENT PRIMARY KEY,
-nombreConductor VARCHAR(20),
-docConductor INT NOT NULL UNIQUE,
-numViajes INT DEFAULT 0,
-numMultas INT DEFAULT 0,
+nombreConductor VARCHAR(20) not null,
+docConductor BIGINT NOT NULL UNIQUE,
+numViajes BIGINT DEFAULT 0,
+numMultas BIGINT DEFAULT 0,
 numeroContacto BIGINT NOT NULL,
-EpsConductor varchar(20)
+EpsConductor varchar(20) null
 );
+
 CREATE TABLE VEHICULO(
 idVehiculo int AUTO_INCREMENT PRIMARY KEY,
 placaVehiculo varchar(10) UNIQUE NOT NULL,
 colorVehiculo VARCHAR(20) NOT NULL,
 marcaVehiculo VARCHAR(20) NOT NULL,
-cantidadReparaciones INT,
-estadoVehiculo ENUM("activo","inactivo"),
-valorImpuesto DOUBLE(12,3),
-SoatVehiculo ENUM("pendiente","activo")
+cantidadReparaciones INT DEFAULT 0,
+estadoVehiculo ENUM("activo","inactivo") NOT NULL,
+valorImpuesto DOUBLE(12,3) NOT NULL,
+SoatVehiculo ENUM("pendiente","activo") NOT NULL
 );
+
 CREATE TABLE CLIENTE(
 idCLiente int PRIMARY KEY AUTO_INCREMENT,
-docCliente int,
-contactoCliente bigint,
+docCliente BIGINT NULL,
+contactoCliente bigint NULL,
 tipoCliente ENUM("natural","juridico"), /*juridico hace referencia a las empresas*/
-nombreCliente VARCHAR(20)
+nombreCliente VARCHAR(20) NOT NULL
 );
+
 CREATE TABLE VIAJE(
 idViaje INT AUTO_INCREMENT PRIMARY KEY,
 lugarDestino varchar(20) NOT NULL,
 lugarOrigen varchar(20) NOT NULL,
-duracionEstimada varchar(20),
-numEscalas int);
+duracionEstimada varchar(20) NOT NULL,
+numEscalas BIGINT DEFAULT 0);
+
 CREATE TABLE GASTO(
 idGasto INT PRIMARY KEY AUTO_INCREMENT,
-descripcionGasto VARCHAR(20),
-tipoGasto int
+descripcionGasto VARCHAR(20) NOT NULL,
+tipoGasto int NOT NULL
 );
+
 CREATE TABLE FACTURA(
 idFactura INT AUTO_INCREMENT PRIMARY KEY,
 valorViaje double(15,3) NOT NULL,
 utilidadesViaje double (15,3) NOT NULL,
 idCLienteFK int ,
 idConductorFK int,
-idViajeFK int ,
-idVehiculoFK INT,
+idViajeFK int  ,
+idVehiculoFK INT ,
 CONSTRAINT llaveCliente FOREIGN KEY(idCLienteFK) REFERENCES CLIENTE(idCliente) ON DELETE SET NULL,
 CONSTRAINT llaveConductor FOREIGN KEY(idConductorFK) REFERENCES conductor(IdCOnductor) ON DELETE SET NULL,
 CONSTRAINT llaveViaje FOREIGN KEY(idViajeFK) REFERENCES viaje(IdViaje) ON DELETE SET NULL,
 CONSTRAINT llaveVehiculo FOREIGN KEY(idVehiculoFK) REFERENCES vehiculo(IdVehiculo) ON DELETE SET NULL
 );
+
 CREATE TABLE gastoFactura(
 idRegistro INT PRIMARY KEY AUTO_INCREMENT,
 valorGasto DOUBLE(11,3) NOT NULL,
-idFacturaFK INT ,
+idFacturaFK INT,
 idGastoFK INT ,
 CONSTRAINT llaveFacturaFK FOREIGN KEY(idFacturaFK) REFERENCES factura(idFactura) ON DELETE SET NULL,
 CONSTRAINT llaveGastoFK FOREIGN KEY(idGastoFK) REFERENCES gasto(idGasto) ON DELETE SET NULL
 );
+
 ALTER TABLE CONDUCTOR 
-ADD COLUMN estadoConductor ENUM("activo","inactivo");
+ADD COLUMN estadoConductor ENUM("activo","inactivo") not null;
 ALTER TABLE GASTO
-ADD COLUMN nombreGasto varchar(20);
+ADD COLUMN nombreGasto varchar(20) not null;
 ALTER TABLE GASTO
-MODIFY COLUMN descripcionGasto varchar(40);
+MODIFY COLUMN descripcionGasto varchar(40) not null;
 /* CREACION DE VISTA PARA VEHICULOS ACTIVOS E INACTIVOS*/
 CREATE VIEW vehiculosInactivos as 
 SELECT * FROM vehiculo where estadoVehiculo = 'inactivo';
+
 CREATE VIEW vehiculosActivos as 
 SELECT * FROM vehiculo where estadoVehiculo='activo';
 /* CREACION DE VISTA PARA CONDUCTORES ACTIVOS E INACTIVOS */
