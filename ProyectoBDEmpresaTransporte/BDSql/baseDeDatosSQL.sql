@@ -93,6 +93,23 @@ where idFacturaFK=idFactura
 order by valorGasto desc LIMIT 1;
 END $$
 DELIMITER ;
+/* PROCEDURE PARA CONSULTAR CONDUCTOR POR ID*/
+DELIMITER $$
+CREATE PROCEDURE consultarConductor(in idCon int)
+BEGIN 
+SELECT * FROM CONDUCTOR
+WHERE idConductor=idCon;
+END $$
+DELIMITER ;
+/*CONSULTAR EPS CONDUCTOR POR ID*/
+DELIMITER $$
+CREATE PROCEDURE consultarEPS(in idCon int)
+BEGIN 
+SELECT nombreConductor,docConductor,EpsConductor FROM CONDUCTOR
+WHERE idConductor=idCon;
+END $$
+DELIMITER ;
+/*ACTUIALIZAR EPS CONDUCTOR POR ID*/
 /* MEJOR VISUALIZACION DE LAS FACTURAS*/
 CREATE VIEW facturaCompleta as
 SELECT f.valorViaje,f.utilidadesVIaje,v.lugarOrigen,v.lugarDestino,c.nombreConductor as "conductor" ,cl.nombreCliente ,ve.marcaVehiculo,
@@ -238,8 +255,19 @@ SELECT idGastoFK,count(*) from gastoFactura
 group by idGastoFK;
 SELECT idFacturaFK,ROUND(avg(valorGasto),2) as "valor promedio de cada gasto" from 
 gastoFactura group by idFacturaFK;
+/* updates tabla conductor*/
+UPDATE 	CONDUCTOR  
+SET estadoConductor="inactivo" 
+WHERE idConductor=1;
+SELECT * FROM conductor;
+/* consultar conductor por id */
+CALL consultarConductor(2);
+/* consultar eps por conductor*/
+CALL consultarEPS(1);
+/*ACTUALIZAR EPS POR ID CONDUCTOR*/
 /* CONSULTAS MULTITABLA */
-SELECT * FROM ---- ;
+
+SELECT * FROM aca ;
 /* prueba de las vistas */
 SELECT * FROM conductoresActivos;
 SELECT * FROM conductoresInactivos;
@@ -251,3 +279,5 @@ SELECT * FROM gastoFactura;
 CALL consultarMayorGasto(1);
 CALL consultarMayorGasto(2);
 /*	*/
+/* PROCEDURE PARA CONSULTAR CONDUCTOR POR DOC*/
+
