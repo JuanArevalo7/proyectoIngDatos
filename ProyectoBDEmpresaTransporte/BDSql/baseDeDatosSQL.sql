@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-DROP DATABASE prueba1;
-CREATE DATABASE prueba1;
-USE prueba1;
-
-=======
 DROP DATABASE basedeDatosSQL;
 CREATE DATABASE basedeDatosSQL;
 USE basedeDatosSQL;
->>>>>>> juan-arevalo
 CREATE TABLE CONDUCTOR(
 idConductor INT AUTO_INCREMENT PRIMARY KEY,
 nombreConductor VARCHAR(20) not null,
