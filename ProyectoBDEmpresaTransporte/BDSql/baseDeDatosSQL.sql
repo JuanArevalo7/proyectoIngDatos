@@ -1,6 +1,6 @@
-DROP DATABASE prueba1;
-CREATE DATABASE prueba1;
-USE prueba1;
+DROP DATABASE basedeDatosSQL;
+CREATE DATABASE basedeDatosSQL;
+USE basedeDatosSQL;
 CREATE TABLE CONDUCTOR(
 idConductor INT AUTO_INCREMENT PRIMARY KEY,
 nombreConductor VARCHAR(20),
@@ -206,7 +206,32 @@ SELECT idVehiculo, placaVehiculo from Vehiculo
 WHERE soatVehiculo='pendiente';
 SELECT * FROM VEHICULO;
 SELECT placaVehiculo,marcaVehiculo from Vehiculo
-where 
+where valorImpuesto>=100000.000;
+SELECT * FROM VEHICULO
+WHERE marcaVehiculo LIKE "%chevrolet%";
+SELECT * FROM VEHICULO 
+ORDER BY cantidadReparaciones desc limit 5;
+/* CONSULTA ESPECIFICA TABLA VIAJE*/
+SELECT LugarOrigen,lugarDestino,duracionEstimada FROM viaje
+WHERE numEscalas=(select max(numEscalas) from viaje limit 1);
+/* CONSULTA ESPECIFICA TABLA FACTURA*/
+SELECT * from factura
+where utilidadesviaje<=0;
+SELECT idClienteFK,count(*) FROM factura
+GROUP BY idClienteFK;
+SELECT * FROM GASTO 
+where tipoGasto=2;
+SELECT * FROM GASTO 
+where tipoGasto=1;
+SELECT * FROM GASTO 
+where tipoGasto=3;
+/*CONSULTA ESPECIFICA TABLA GASTOFACTURA*/
+SELECT idGastoFK,count(*) from gastoFactura
+group by idGastoFK;
+SELECT idFacturaFK,ROUND(avg(valorGasto),2) as "valor promedio de cada gasto" from 
+gastoFactura group by idFacturaFK;
+/* CONSULTAS MULTITABLA */
+SELECT * FROM ---- ;
 /* prueba de las vistas */
 SELECT * FROM conductoresActivos;
 SELECT * FROM conductoresInactivos;
