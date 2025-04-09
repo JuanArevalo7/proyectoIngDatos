@@ -1,10 +1,13 @@
+<<<<<<< HEAD
 DROP DATABASE prueba1;
 CREATE DATABASE prueba1;
 USE prueba1;
 
+=======
 DROP DATABASE basedeDatosSQL;
 CREATE DATABASE basedeDatosSQL;
 USE basedeDatosSQL;
+>>>>>>> juan-arevalo
 CREATE TABLE CONDUCTOR(
 idConductor INT AUTO_INCREMENT PRIMARY KEY,
 nombreConductor VARCHAR(20) not null,
@@ -218,7 +221,6 @@ SELECT idVehiculo, placaVehiculo from Vehiculo
 WHERE soatVehiculo='pendiente';
 SELECT * FROM VEHICULO;
 SELECT placaVehiculo,marcaVehiculo from Vehiculo
-where 
 where valorImpuesto>=100000.000;
 SELECT * FROM VEHICULO
 WHERE marcaVehiculo LIKE "%chevrolet%";
