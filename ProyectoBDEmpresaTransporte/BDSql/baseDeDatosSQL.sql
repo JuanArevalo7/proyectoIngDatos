@@ -267,7 +267,7 @@ CALL consultarEPS(1);
 /*ACTUALIZAR EPS POR ID CONDUCTOR*/
 /* CONSULTAS MULTITABLA */
 
-SELECT * FROM ---- ;
+SELECT * FROM aca ;
 /* prueba de las vistas */
 SELECT * FROM conductoresActivos;
 SELECT * FROM conductoresInactivos;
