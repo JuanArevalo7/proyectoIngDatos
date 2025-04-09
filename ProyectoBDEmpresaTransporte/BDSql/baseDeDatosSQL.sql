@@ -256,4 +256,5 @@ SELECT * FROM VEHICULOSINACTIVOS;
 SELECT * FROM gastoFactura;
 /* prueba del procedimiento almacendado*/
 CALL consultarMayorGasto(1);
+CALL consultarMayorGasto(2);
 /*	*/
