@@ -6,7 +6,7 @@ nombreConductor VARCHAR(20),
 docConductor INT NOT NULL UNIQUE,
 numViajes INT DEFAULT 0,
 numMultas INT DEFAULT 0,
-numeroContacto INT NOT NULL,
+numeroContacto BIGINT NOT NULL,
 EpsConductor varchar(20)
 );
 CREATE TABLE VEHICULO(
@@ -22,8 +22,9 @@ SoatVehiculo ENUM("pendiente","activo")
 CREATE TABLE CLIENTE(
 idCLiente int PRIMARY KEY AUTO_INCREMENT,
 docCliente int,
-contactoCliente int,
-tipoCliente ENUM("natural","juridico") /*juridico hace referencia a las empresas*/
+contactoCliente bigint,
+tipoCliente ENUM("natural","juridico"), /*juridico hace referencia a las empresas*/
+nombreCliente VARCHAR(20)
 );
 CREATE TABLE VIAJE(
 idViaje INT AUTO_INCREMENT PRIMARY KEY,
@@ -33,12 +34,13 @@ duracionEstimada varchar(20),
 numEscalas int);
 CREATE TABLE GASTO(
 idGasto INT PRIMARY KEY AUTO_INCREMENT,
-descripcionGasto VARCHAR(20)
+descripcionGasto VARCHAR(20),
+tipoGasto int
 );
 CREATE TABLE FACTURA(
 idFactura INT AUTO_INCREMENT PRIMARY KEY,
-valorViaje double(11,8) NOT NULL,
-utilidadesViaje double (11,8) NOT NULL,
+valorViaje double(15,3) NOT NULL,
+utilidadesViaje double (15,3) NOT NULL,
 idCLienteFK int ,
 idConductorFK int,
 idViajeFK int ,
@@ -79,12 +81,12 @@ BEGIN
 SELECT idFacturaFK  as "numero de factura",valorGasto,g.nombreGasto,g.descripcionGasto FROM gastofactura
 INNER JOIN gasto g on idGastoFK=idGasto
 where idFacturaFK=idFactura
-order by valorGasto desc limit 1;
+order by valorGasto desc LIMIT 1;
 END $$
 DELIMITER ;
 /* MEJOR VISUALIZACION DE LAS FACTURAS*/
 CREATE VIEW facturaCompleta as
-SELECT f.valorViaje,f.utilidadesVIaje,v.lugarOrigen,v.lugarDestino,c.nombreConductor as "conductor",ve.marcaVehiculo,
+SELECT f.valorViaje,f.utilidadesVIaje,v.lugarOrigen,v.lugarDestino,c.nombreConductor as "conductor" ,cl.nombreCliente ,ve.marcaVehiculo,
 ve.placaVehiculo  FROM factura f 
 INNER JOIN viaje v on v.idVIaje=f.idViajeFK
 INNER JOIN conductor c on c.idConductor=f.idConductorFK
@@ -94,7 +96,7 @@ INNER JOIN cliente cl on cl.idCliente=f.idCLienteFK;
 DELIMITER $$
 CREATE TRIGGER añadirReparaciones AFTER INSERT ON gastoFactura FOR EACH ROW
 BEGIN 
-IF NEW.IDGASTOFK IN (1,2,3) THEN
+IF NEW.IDGASTOFK = 1 THEN
 UPDATE VEHICULO 
 SET cantidadReparaciones=cantidadReparaciones+1 WHERE idVehiculo=(select idVehiculoFK from factura
 where idFactura=new.idFacturaFK);
@@ -112,4 +114,87 @@ where idFactura=new.idFacturaFK);
 END IF;
 END $$
 DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER añadirViaje AFTER INSERT ON Factura FOR EACH ROW
+BEGIN 
+UPDATE conductor
+SET numViajes=numViajes+1 WHERE idConductor=new.idConductorFK;
+END $$
+DELIMITER ;
+/* trigger para calcular automaticamente las utilidades */
+DELIMITER $$
+CREATE TRIGGER actualizarUtilidades
+AFTER INSERT ON gastoFactura
+FOR EACH ROW
+BEGIN
+  DECLARE totalGastos DOUBLE;
+  SELECT SUM(valorGasto)
+  INTO totalGastos
+  FROM gastoFactura
+  WHERE idFacturaFK = NEW.idFacturaFK;
+
+  UPDATE factura
+  SET utilidadesViaje = valorViaje - totalGastos
+  WHERE idFactura = NEW.idFacturaFK;
+END $$
+DELIMITER ;
+INSERT INTO gasto (descripcionGasto, tipoGasto, nombreGasto)
+VALUES 
+('Cambio de frenos', 1, 'Reparación'),
+('Multa por exceso de velocidad', 2, 'Multa'),
+('Multa por mal parqueo', 2, 'Multa'),
+('Peaje Bogotá', 3, 'Peaje'),
+('Hotel en Cali', 3, 'Hospedaje'),
+('Parqueadero Medellín', 3, 'Parqueadero');
+INSERT INTO conductor (nombreConductor, docConductor, numeroContacto, EpsConductor, estadoConductor)
+VALUES ('Pedro Torres', 123456789, 3101234567, 'Sura', 'activo');
+
+INSERT INTO vehiculo (placaVehiculo, colorVehiculo, marcaVehiculo, cantidadReparaciones, estadoVehiculo, valorImpuesto, SoatVehiculo)
+VALUES ('ABC123', 'Rojo', 'Chevrolet', 0, 'activo', 100000.000, 'activo');
+
+INSERT INTO cliente (docCliente, contactoCliente, tipoCliente, nombreCliente)
+VALUES (987654321, 3198765432, 'natural', 'Laura Gómez');
+
+INSERT INTO viaje (lugarDestino, lugarOrigen, duracionEstimada, numEscalas)
+VALUES ('Medellín', 'Bogotá', '10 horas', 1);
+INSERT INTO factura (valorViaje, utilidadesViaje, idClienteFK, idConductorFK, idViajeFK, idVehiculoFK)
+VALUES (1000000.000, 0.000, 1, 1, 1, 1);
+INSERT INTO gastoFactura (valorGasto, idFacturaFK, idGastoFK)
+VALUES (150000.000, 1, 1);
+INSERT INTO gastoFactura (valorGasto, idFacturaFK, idGastoFK)
+VALUES (80000.000, 1, 2);
+INSERT INTO gastoFactura (valorGasto, idFacturaFK, idGastoFK)
+VALUES (120000.000, 1, 4);
 SELECT * FROM facturaCompleta;
+SELECT * FROM gastofactura;
+SELECT * FROM CONDUCTOR;
+SELECT * FROM vehiculo;
+/*consulta basica tabla cliente*/
+SELECT idCLiente,nombreCliente FROM cliente;
+/* consulta basica tabla conducotr */
+select nombreConductor,numViajes,numMultas from conductor;
+/* consulta basica tabla viaje*/
+SELECT * FROM VIAJE;
+/*consulta basica tabla vehiculo*/
+select marcaVehiculo,estadoVehiculo,colorVehiculo,soatVehiculo from VEHICULO;
+/* consulta basica taba gasto*/
+SELECT nombreGasto,descripcionGasto,tipoGasto from gasto;
+/* consulta basica factura*/
+select idFactura,valorViaje,utilidadesViaje from factura;
+select valorGasto,idFacturaFK,idGastoFK from gastofactura;
+/* consultas especificas tabla cliente */
+SELECT * FROM CLIENTE 
+WHERE tipoCLiente='natural';
+SELECT * FROM CLIENTE 
+WHERE tipoCLiente='juridico';
+SELECT * FROM CLIENTE WHERE contactoCliente is not null;
+/* consulta especifica */
+/* prueba de las vistas */
+SELECT * FROM conductoresActivos;
+SELECT * FROM conductoresInactivos;
+SELECT * FROM facturaCompleta;
+SELECT * FROM VEHICULOSACTIVOS;
+SELECT * FROM VEHICULOSINACTIVOS;
+SELECT * FROM gastoFactura;
+/* prueba del procedimiento almacendado*/
+CALL consultarMayorGasto(1);
