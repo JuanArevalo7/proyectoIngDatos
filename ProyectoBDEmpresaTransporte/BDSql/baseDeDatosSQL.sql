@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS CONSTRUCTORA;
 CREATE DATABASE CONSTRUCTORA;
 USE CONSTRUCTORA;
 CREATE TABLE CONDUCTOR(
@@ -84,6 +85,15 @@ SELECT * from conductor where estadoConductor='activo';
 CREATE VIEW conductoresInactivos as
 SELECT * FROM conductor where estadoConductor='inactivo';
 /* consultar el mayor gasto de una factura*/
+CREATE VIEW verMultas as 
+SELECT * FROM GASTO where tipoGasto=2;
+CREATE VIEW mejorViaje as
+SELECT ROUND(avg(utilidadesViaje),3) as "promedio utilidades",lugarOrigen,LugarDestino  FROM factura 
+INNER JOIN viaje on idVIaje=idViajeFK
+GROUP BY idVIajeFK order by avg(utilidadesViaje) DESC LIMIT 5;
+CREATE VIEW origenMasComun as
+SELECT count(*),lugarOrigen as "numero de viajes" FROM VIAJE
+GROUP BY lugarOrigen order by count(*) desc limit 5; 
 DELIMITER $$
 CREATE PROCEDURE consultarMayorGasto(in idFactura int)
 BEGIN 
@@ -175,6 +185,9 @@ INNER JOIN cliente cl on cl.idCliente=f.idCLienteFK;
 CREATE VIEW mejorClientes as
 SELECT idClienteFK as "id cliente",sum(valorviaje) as "total que ha pagado a la empresa"  FROM FACTURA
 GROUP BY idClienteFK ORDER BY  sum(valorviaje)  DESC LIMIT 5;
+CREATE VIEW gastosDeUnaFactura as 
+SELECT idFactura,utilidadesViaje,valorViaje,valorGasto,idGastoFK as "id gasto" FROM factura 
+INNER JOIN gastoFactura on idFacturaFK=idFactura;
 /* TRIGGER PARA AÑADIR REPARACIONES A UN VEHICULO AUTOMATICAMENTE*/ 
 DELIMITER $$
 CREATE TRIGGER añadirReparaciones AFTER INSERT ON gastoFactura FOR EACH ROW
@@ -383,8 +396,100 @@ INSERT INTO factura (valorViaje, utilidadesViaje, idClienteFK, idConductorFK, id
 (150000, 10000, 15, 6, 30, 32),(370000, 32000, 16, 7, 30, 32),(200000, 18000, 17, 7, 30, 32),
 (220000, 20000, 18, 7, 30, 32),(260000, 23000, 19, 7, 30, 32),(310000, 29000, 20, 7, 30, 32),
 (190000, 15000, 1, 3, 1, 1),(430000, 40000, 1, 3, 1, 1);
-insert into gastoFactura(valorGasto,idFacturaFK,idGastoFK) values (165000,1,2),(248000,2,17),
-(29200,3,32),(138000,4,10),(365000,5,22);
+/* inserciones mas importantes*/
+INSERT INTO gastoFactura (idFacturaFK, idGastoFK, valorGasto) VALUES
+-- Factura 1 (valorViaje = 180000, utilidadesViaje = 15000 → gasto total = 165000)
+(1, 1, 50000), (1, 2, 60000), (1, 3, 55000),
+
+-- Factura 2 (valorViaje = 250000, utilidadesViaje = 20000 → gasto total = 230000)
+(2, 4, 70000), (2, 5, 80000), (2, 6, 80000),
+
+-- Factura 3 (valorViaje = 320000, utilidadesViaje = 28000 → gasto total = 292000)
+(3, 7, 90000), (3, 8, 100000), (3, 9, 102000),
+
+-- Factura 4 (valorViaje = 150000, utilidadesViaje = 12000 → gasto total = 138000)
+(4, 10, 40000), (4, 11, 46000), (4, 12, 52000),
+
+-- Factura 5 (valorViaje = 400000, utilidadesViaje = 35000 → gasto total = 365000)
+(5, 13, 120000), (5, 14, 110000), (5, 15, 135000),
+
+-- Factura 6 (valorViaje = 220000, utilidadesViaje = 18000 → gasto total = 202000)
+(6, 16, 60000), (6, 17, 70000), (6, 18, 72000),
+
+-- Factura 7 (valorViaje = 270000, utilidadesViaje = 22000 → gasto total = 248000)
+(7, 19, 85000), (7, 20, 83000), (7, 21, 80000),
+
+-- Factura 8 (valorViaje = 310000, utilidadesViaje = 29000 → gasto total = 281000)
+(8, 22, 91000), (8, 23, 95000), (8, 24, 95000),
+
+-- Factura 9 (valorViaje = 190000, utilidadesViaje = 13000 → gasto total = 177000)
+(9, 25, 60000), (9, 26, 58000), (9, 27, 59000),
+
+-- Factura 10 (valorViaje = 230000, utilidadesViaje = 17000 → gasto total = 213000)
+(10, 28, 70000), (10, 29, 72000), (10, 30, 71000),
+
+-- Factura 11 (valorViaje = 500000, utilidadesViaje = 45000 → gasto total = 455000)
+(11, 31, 200000), (11, 3, 130000), (11, 6, 125000),
+
+-- Factura 12 (valorViaje = 210000, utilidadesViaje = 16000 → gasto total = 194000)
+(12, 5, 65000), (12, 8, 66000), (12, 2, 63000),
+
+-- Factura 13 (valorViaje = 280000, utilidadesViaje = 23000 → gasto total = 257000)
+(13, 6, 88000), (13, 19, 92000), (13, 7, 77000),
+
+-- Factura 14 (valorViaje = 330000, utilidadesViaje = 25000 → gasto total = 305000)
+(14, 22, 102000), (14, 4, 99000), (14, 9, 104000),
+
+-- Factura 15 (valorViaje = 290000, utilidadesViaje = 19000 → gasto total = 271000)
+(15, 15, 90000), (15, 14, 85000), (15, 13, 96000),
+
+-- Factura 16 (valorViaje = 240000, utilidadesViaje = 21000 → gasto total = 219000)
+(16, 25, 74000), (16, 21, 73000), (16, 10, 72000),
+
+-- Factura 17 (valorViaje = 150000, utilidadesViaje = 8000 → gasto total = 142000)
+(17, 16, 45000), (17, 9, 50000), (17, 18, 47000),
+
+-- Factura 18 (valorViaje = 170000, utilidadesViaje = 7000 → gasto total = 163000)
+(18, 11, 55000), (18, 3, 54000), (18, 1, 54000),
+
+-- Factura 19 (valorViaje = 310000, utilidadesViaje = 15000 → gasto total = 295000)
+(19, 5, 98000), (19, 12, 98000), (19, 17, 99000),
+
+-- Factura 20 (valorViaje = 450000, utilidadesViaje = 40000 → gasto total = 410000)
+(20, 6, 140000), (20, 19, 135000), (20, 15, 135000),
+
+-- Factura 21 (valorViaje = 160000, utilidadesViaje = 6000 → gasto total = 154000)
+(21, 2, 51000), (21, 9, 52000), (21, 1, 51000),
+
+-- Factura 22 (valorViaje = 380000, utilidadesViaje = 33000 → gasto total = 347000)
+(22, 18, 116000), (22, 10, 117000), (22, 3, 114000),
+
+-- Factura 23 (valorViaje = 300000, utilidadesViaje = 27000 → gasto total = 273000)
+(23, 31, 92000), (23, 3, 89000), (23, 1, 92000),
+
+-- Factura 24 (valorViaje = 275000, utilidadesViaje = 25000 → gasto total = 250000)
+(24, 5, 83000), (24, 8, 83000), (24, 2, 84000),
+
+-- Factura 25 (valorViaje = 265000, utilidadesViaje = 22000 → gasto total = 243000)
+(25, 6, 81000), (25, 19, 80000), (25, 7, 82000),
+
+-- Factura 26 (valorViaje = 185000, utilidadesViaje = 17000 → gasto total = 168000)
+(26, 20, 56000), (26, 17, 56000), (26, 11, 56000),
+
+-- Factura 27 (valorViaje = 370000, utilidadesViaje = 30000 → gasto total = 340000)
+(27, 12, 113000), (27, 4, 114000), (27, 22, 113000),
+
+-- Factura 28 (valorViaje = 215000, utilidadesViaje = 18000 → gasto total = 197000)
+(28, 15, 67000), (28, 14, 65000), (28, 13, 65000),
+
+-- Factura 29 (valorViaje = 345000, utilidadesViaje = 31000 → gasto total = 314000)
+(29, 25, 104000), (29, 21, 105000), (29, 10, 105000),
+
+-- Factura 30 (valorViaje = 160000, utilidadesViaje = 9000 → gasto total = 151000)
+(30, 16, 50000), (30, 9, 51000), (30, 18, 50000);
+
+
+select * from gastosDeUnaFactura where idFactura=29;
 SELECT * FROM facturaCompleta;
 SELECT * FROM gastofactura;
 SELECT * FROM CONDUCTOR;
@@ -472,7 +577,9 @@ call actualizarCont(1,3053524931);
  INNER JOIN GASTO on idGasto=idGastoFK
  INNER JOIN FACTURA ON idFacturaFK=idFactura
  INNER JOIN CONDUCTOR ON idConductorFK=idConductor
- WHERE idConductorFK=1 and idGasto=2;
+ WHERE idConductorFK=5 and tipoGasto=2;
+ /* consultar el numero de cierto conductor */
+ SELECT numeroContacto,nombreConductor FROM conductor WHERE idConductor=1;
 /*RQFS VIAJE*/
 SELECT lugarOrigen,LugarDestino, duracionEstimada FROM viaje;
 CALL ActualizarDur(1,"12 horas");
@@ -502,6 +609,10 @@ SELECT * FROM gastoFactura;
 SELECT * FROM mejorClientes;
 SELECT * FROM viajesLargos;
 SELECT * FROM mejorClientes;
+SELECT * FROM verMultas;
+SELECT * FROM mejorViaje;
+SELECT *  FROM origenMasComun;
+
 /* prueba del procedimiento almacendado*/
 CALL consultarMayorGasto(1);
 CALL consultarMayorGasto(2);
