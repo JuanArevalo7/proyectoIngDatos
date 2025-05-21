@@ -1,0 +1,92 @@
+[
+  {
+    "nombreConductor": "Mario Mendoza",
+    "docConductor": 1031650258,
+    "numViajes": 0,
+    "numMultas": 0,
+    "numContacto": 3227830878,
+    "epsConductor": "Sura",
+    "estadoConductor": true
+  },
+  {
+    "nombreConductor": "Carlos Pérez",
+    "docConductor": 1029876543,
+    "numViajes": 5,
+    "numMultas": 1,
+    "numContacto": 3204567890,
+    "epsConductor": "Sanitas",
+    "estadoConductor": true
+  },
+  {
+    "nombreConductor": "Jorge Ramírez",
+    "docConductor": 1013456789,
+    "numViajes": 10,
+    "numMultas": 3,
+    "numContacto": 3109876543,
+    "epsConductor": "Compensar",
+    "estadoConductor": true
+  },
+  {
+    "nombreConductor": "Luis Torres",
+    "docConductor": 1002345678,
+    "numViajes": 2,
+    "numMultas": 0,
+    "numContacto": 3182345678,
+    "epsConductor": "Nueva EPS",
+    "estadoConductor": false
+  },
+  {
+    "nombreConductor": "Andrés Martínez",
+    "docConductor": 1009871234,
+    "numViajes": 12,
+    "numMultas": 2,
+    "numContacto": 3012345678,
+    "epsConductor": "Sura",
+    "estadoConductor": true
+  },
+  {
+    "nombreConductor": "Pedro Herrera",
+    "docConductor": 1034567891,
+    "numViajes": 0,
+    "numMultas": 0,
+    "numContacto": 3119876543,
+    "epsConductor": "Coomeva",
+    "estadoConductor": true
+  },
+  {
+    "nombreConductor": "Juan Ríos",
+    "docConductor": 1011122233,
+    "numViajes": 8,
+    "numMultas": 1,
+    "numContacto": 3198765432,
+    "epsConductor": "Sanitas",
+    "estadoConductor": false
+  },
+  {
+    "nombreConductor": "David López",
+    "docConductor": 1056789012,
+    "numViajes": 7,
+    "numMultas": 3,
+    "numContacto": 3145678901,
+    "epsConductor": "Compensar",
+    "estadoConductor": true
+  },
+  {
+    "nombreConductor": "Óscar Díaz",
+    "docConductor": 1001234567,
+    "numViajes": 4,
+    "numMultas": 0,
+    "numContacto": 3151234567,
+    "epsConductor": "Sura",
+    "estadoConductor": true
+  },
+  {
+    "nombreConductor": "Héctor Castro",
+    "docConductor": 1034567001,
+    "numViajes": 1,
+    "numMultas": 0,
+    "numContacto": 3176543210,
+    "epsConductor": "Nueva EPS",
+    "estadoConductor": false
+  }
+]
