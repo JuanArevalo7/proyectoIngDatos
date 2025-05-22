@@ -6,6 +6,8 @@ const vehiculoRoutes=require('./routes/vehiculoRoutes')
 const conductorRoutes=require('./routes/conductorRoutes')
 const gastoRoutes=require('./routes/gastoRoutes')
 const viajeRoutes=require('./routes/viajeRoutes')
+const clienteRoutes=require('./routes/clienteRoutes')
+const facturaSchema=require('./routes/facturaRoutes')
 const app=express();
 const PORT=3000;
 
@@ -26,7 +28,9 @@ mongoose.connect('mongodb://localhost:27017/bdNosqltransportadora',{
 app.use('/api/Conductor',conductorRoutes);
 app.use('/api/Vehiculo',vehiculoRoutes);
 app.use('/api/Gasto',gastoRoutes);
-app.use('/api/Gasto',viajeRoutes);
+app.use('/api/Viaje',viajeRoutes);
+app.use('/api/Cliente',clienteRoutes);
+app.use('/api/Factura',facturaSchema);
 app.listen(PORT,()=>{
     console.log(`Servidor conectado en http://localhost:${PORT}`);
 });

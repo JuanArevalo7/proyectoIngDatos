@@ -2,9 +2,10 @@ const mongoose=require('mongoose');
 
 
 const ViajeSchema=new mongoose.Schema({
-    descripcionGasto:{type:String,require:true},
-    tipoGasto:Number,
-    nombreGasto:String,
+    lugarDestino:{type:String,require:true},
+    lugarOrigen:String,
+    duracionEstimada:Number,
+    numEscalas:Number,
     creadoEn:{type:Date,default:Date.now}
 });
 
