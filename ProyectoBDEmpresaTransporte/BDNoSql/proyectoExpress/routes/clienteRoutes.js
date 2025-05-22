@@ -48,21 +48,6 @@ router.get('/:id',async(req,res)=>{
         res.status(500).json({ error: error.menssage});
 }
 })
-router.put('/activar-mayores-30', async (req, res) => {
-  try {
-    const resultado = await Cliente.updateMany(
-      { edad: { $gte: 30 } },    // filtro: edad >= 30
-      { $set: { activo: true } } // actualización: agrega campo activo:true
-    );
-
-    res.json({
-      mensaje: 'Usuarios actualizados',
-      modificados: resultado.modifiedCount
-    });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
 //modificar datos del producto 
 router.put('/:id',async(req,res)=>{
     try{
@@ -74,15 +59,6 @@ router.put('/:id',async(req,res)=>{
         res.status(500).json({ error: error.message});
 }
 })
-
-router.delete('/menores-30', async (req, res) => {
-  try {
-    const resultado = await Cliente.deleteMany({ edad: { $lt: 30 } });
-    res.json({ mensaje: `Se eliminaron ${resultado.deletedCount} usuarios menores de 30 años.` });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
 
 //eliminar un producto 
 

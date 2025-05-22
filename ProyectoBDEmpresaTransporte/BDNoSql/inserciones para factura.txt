@@ -1,0 +1,52 @@
+[
+  {
+    "valorViaje": 150000,
+    "utilidadesViaje": 30000,
+    "fechaViaje": "2025-01-15"
+  },
+  {
+    "valorViaje": 220000,
+    "utilidadesViaje": 50000,
+    "fechaViaje": "2025-01-20"
+  },
+  {
+    "valorViaje": 180000,
+    "utilidadesViaje": 40000,
+    "fechaViaje": "2025-01-25"
+  },
+  {
+    "valorViaje": 135000,
+    "utilidadesViaje": 25000,
+    "fechaViaje": "2025-02-01"
+  },
+  {
+    "valorViaje": 160000,
+    "utilidadesViaje": 30000,
+    "fechaViaje": "2025-02-10"
+  },
+  {
+    "valorViaje": 175000,
+    "utilidadesViaje": 35000,
+    "fechaViaje": "2025-02-15"
+  },
+  {
+    "valorViaje": 200000,
+    "utilidadesViaje": 45000,
+    "fechaViaje": "2025-03-01"
+  },
+  {
+    "valorViaje": 145000,
+    "utilidadesViaje": 28000,
+    "fechaViaje": "2025-03-05"
+  },
+  {
+    "valorViaje": 210000,
+    "utilidadesViaje": 48000,
+    "fechaViaje": "2025-03-10"
+  },
+  {
+    "valorViaje": 190000,
+    "utilidadesViaje": 42000,
+    "fechaViaje": "2025-03-15"
+  }
+]

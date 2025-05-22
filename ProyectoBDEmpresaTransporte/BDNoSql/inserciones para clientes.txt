@@ -1,0 +1,62 @@
+[
+  {
+    "docCliente": 1001,
+    "contactoCliente": "juan.perez@example.com",
+    "tipoCliente": "Regular",
+    "nombreCliente": "Juan Pérez"
+  },
+  {
+    "docCliente": 1002,
+    "contactoCliente": "laura.gomez@example.com",
+    "tipoCliente": "VIP",
+    "nombreCliente": "Laura Gómez"
+  },
+  {
+    "docCliente": 1003,
+    "contactoCliente": "carlos.ramirez@example.com",
+    "tipoCliente": "Regular",
+    "nombreCliente": "Carlos Ramírez"
+  },
+  {
+    "docCliente": 1004,
+    "contactoCliente": "maria.lopez@example.com",
+    "tipoCliente": "Nuevo",
+    "nombreCliente": "María López"
+  },
+  {
+    "docCliente": 1005,
+    "contactoCliente": "fernando.torres@example.com",
+    "tipoCliente": "Frecuente",
+    "nombreCliente": "Fernando Torres"
+  },
+  {
+    "docCliente": 1006,
+    "contactoCliente": "ana.morales@example.com",
+    "tipoCliente": "VIP",
+    "nombreCliente": "Ana Morales"
+  },
+  {
+    "docCliente": 1007,
+    "contactoCliente": "luis.mendez@example.com",
+    "tipoCliente": "Regular",
+    "nombreCliente": "Luis Méndez"
+  },
+  {
+    "docCliente": 1008,
+    "contactoCliente": "paola.fernandez@example.com",
+    "tipoCliente": "Frecuente",
+    "nombreCliente": "Paola Fernández"
+  },
+  {
+    "docCliente": 1009,
+    "contactoCliente": "roberto.castillo@example.com",
+    "tipoCliente": "Nuevo",
+    "nombreCliente": "Roberto Castillo"
+  },
+  {
+    "docCliente": 1010,
+    "contactoCliente": "gabriela.soto@example.com",
+    "tipoCliente": "Regular",
+    "nombreCliente": "Gabriela Soto"
+  }
+]

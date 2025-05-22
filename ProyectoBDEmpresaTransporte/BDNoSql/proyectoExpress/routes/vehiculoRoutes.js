@@ -17,37 +17,6 @@ router.post('/', async (req, res) => {
         res.status(400).json({ error: error.message }); 
     }
 });
-router.get('/', async (req, res) => {
-  try {
-    const { precio } = req.query;
-
-    let filtro = {};
-    if (precio) {
-      filtro.Precio = { $gte: Number(precio) };
-    }
-
-    const vehiculo = await Vehiculo.find(filtro).sort({ Precio: -1 }); 
-    res.json(vehiculo);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-router.get('/', async (req, res) => {
-  try {
-    const { precio } = req.query;
-    let filtro = {};
-
-    if (precio) {
-      filtro.Precio = { $gte: Number(precio) }; 
-    }
-
-    const vehiculos = await Vehiculo.find(filtro);
-    res.json(vehiculos);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
 //consultar todos los productos
 router.get('/',async(req,res)=>{
     try{
@@ -62,62 +31,31 @@ router.get('/',async(req,res)=>{
 //consultar prodcuto por id
 router.get('/:id',async(req,res)=>{
     try{
-        const items=await Item.findById(req.params.id);
-        if (!item)return res.status(404).json({error: 'Producto no encontrado'});
-        res.json(item);
+        const vehiculo=await Vehiculo.findById(req.params.id);
+        if (!vehiculo)return res.status(404).json({error: 'Producto no encontrado'});
+        res.json(vehiculo);
 
     }catch(error){
         res.status(500).json({ error: error.menssage});
 }
 })
-router.put('/actualizar-stock-false', async (req, res) => {
-  try {
-    const resultado = await Producto.updateMany(
-      { Precio: { $gt: 500 } },  // filtro: Precio mayor a 500
-      { $set: { stock: false } }  // actualiza stock a false
-    );
-    res.json({ mensaje: 'Stock actualizado a false para productos > 500', resultado });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-router.put('/actualizar-stock', async (req, res) => {
-  try {
-    const resultado = await Producto.updateMany({}, { $set: { stock: true } });
-    res.json({ mensaje: 'Stock actualizado para todos los productos', resultado });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-
 //modificar datos del producto 
 router.put('/:id',async(req,res)=>{
     try{
-        const item=await Item.findByIdAndUpdate(req.params.id, req.body,{new:true});
-        if (!item)return res.status(404).json({error: 'Producto no encontrado'});
-        res.json(item);
+        const vehiculo=await Vehiculo.findByIdAndUpdate(req.params.id, req.body,{new:true});
+        if (!vehiculo)return res.status(404).json({error: 'Producto no encontrado'});
+        res.json(vehiculo);
 
     }catch(error){
         res.status(500).json({ error: error.menssage});
 }
 })
-//eliminar un producto 
-router.delete('/eliminar-precio-menor-50', async (req, res) => {
-  try {
-    const resultado = await Producto.deleteMany({ Precio: { $lt: 50 } });
-    res.json({ mensaje: 'Productos eliminados con precio menor a 50', resultado });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
 
 router.delete('/:id',async(req,res)=>{
     try{
-        const items=await Item.findByIdAndUpdate(req.params.id);
-        if (!item)return res.status(404).json({error: 'Producto no encontrado'});
-        res.json(items);
+        const vehiculo=await Vehiculo.findByIdAndDelete(req.params.id);
+        if (!vehiculo)return res.status(404).json({error: 'Producto no encontrado'});
+        res.json(vehiculo);
     
     }catch(error){
         res.status(500).json({ error: error.menssage})
@@ -125,3 +63,4 @@ router.delete('/:id',async(req,res)=>{
 });
 
 module.exports=router;
+

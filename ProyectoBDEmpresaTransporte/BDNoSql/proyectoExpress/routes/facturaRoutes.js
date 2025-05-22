@@ -64,31 +64,22 @@ router.put('/activar-mayores-30', async (req, res) => {
 //modificar datos del producto 
 router.put('/:id',async(req,res)=>{
     try{
-        const cliente=await Cliente.findByIdAndUpdate(req.params.id, req.body,{new:true});
-        if (!cliente)return res.status(404).json({error: 'Producto no encontrado'});
-        res.json(cliente);
+        const factura=await Factura.findByIdAndUpdate(req.params.id, req.body,{new:true});
+        if (!factura)return res.status(404).json({error: 'Producto no encontrado'});
+        res.json(factura);
 
     }catch(error){
         res.status(500).json({ error: error.message});
 }
 })
 
-router.delete('/menores-30', async (req, res) => {
-  try {
-    const resultado = await Cliente.deleteMany({ edad: { $lt: 30 } });
-    res.json({ mensaje: `Se eliminaron ${resultado.deletedCount} usuarios menores de 30 años.` });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
 //eliminar un producto 
 
 router.delete('/:id',async(req,res)=>{
     try{
-        const cliente=await Cliente.findByIdAndDelete(req.params.id);
-        if (!cliente)return res.status(404).json({error: 'Producto no encontrado'});
-        res.json(cliente);
+        const factura=await Factura.findByIdAndDelete(req.params.id);
+        if (!factura)return res.status(404).json({error: 'Producto no encontrado'});
+        res.json(factura);
     
     }catch(error){
         res.status(500).json({ error: error.message})

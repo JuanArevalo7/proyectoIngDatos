@@ -1,0 +1,62 @@
+[
+  {
+    "lugarDestino": "Bogotá",
+    "lugarOrigen": "Medellín",
+    "duracionEstimada": 8,
+    "numEscalas": 1
+  },
+  {
+    "lugarDestino": "Cartagena",
+    "lugarOrigen": "Barranquilla",
+    "duracionEstimada": 2,
+    "numEscalas": 0
+  },
+  {
+    "lugarDestino": "Cali",
+    "lugarOrigen": "Pereira",
+    "duracionEstimada": 6,
+    "numEscalas": 2
+  },
+  {
+    "lugarDestino": "Bucaramanga",
+    "lugarOrigen": "Bogotá",
+    "duracionEstimada": 5,
+    "numEscalas": 1
+  },
+  {
+    "lugarDestino": "Manizales",
+    "lugarOrigen": "Armenia",
+    "duracionEstimada": 3,
+    "numEscalas": 0
+  },
+  {
+    "lugarDestino": "Santa Marta",
+    "lugarOrigen": "Cúcuta",
+    "duracionEstimada": 7,
+    "numEscalas": 2
+  },
+  {
+    "lugarDestino": "Villavicencio",
+    "lugarOrigen": "Bogotá",
+    "duracionEstimada": 4,
+    "numEscalas": 0
+  },
+  {
+    "lugarDestino": "Neiva",
+    "lugarOrigen": "Ibagué",
+    "duracionEstimada": 3,
+    "numEscalas": 1
+  },
+  {
+    "lugarDestino": "Tunja",
+    "lugarOrigen": "Zipaquirá",
+    "duracionEstimada": 2,
+    "numEscalas": 0
+  },
+  {
+    "lugarDestino": "Leticia",
+    "lugarOrigen": "Bogotá",
+    "duracionEstimada": 10,
+    "numEscalas": 3
+  }
+]
