@@ -1,19 +1,23 @@
 const express=require('express');
 const router=express.Router();
-const Cliente=require('../models/Factura');
+const Factura=require('../models/Factura');
 
 
 //Registrar un usuario
-router.post('/',async(req,res)=>{
-    try{
-        const cliente=new Cliente(req.body);
-        await cliente.save();
-        res.status(201).json(cliente);
-
-    }catch(error){
-        res.status(400).json({ error: error.menssage});
-}
-})
+router.post('/', async (req, res) => {
+    try {
+        if (Array.isArray(req.body)) {
+            const facturas = await Factura.insertMany(req.body);
+            res.status(201).json(facturas);
+        } else {
+            const factura = new Factura(req.body);
+            await factura.save();
+            res.status(201).json(factura);
+        }
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
 
 //consultar todos los productos
 router.get('/', async (req, res) => {
@@ -23,8 +27,8 @@ router.get('/', async (req, res) => {
     let filtro = {};
     if (nombre) filtro.nombre = { $eq: nombre };
     if (edad) filtro.edad = { $gte: edad };
-    const clientes = await Cliente.find(filtro);
-    res.json(clientes);
+    const factura = await Factura.find(filtro);
+    res.json(factura);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -34,9 +38,9 @@ router.get('/', async (req, res) => {
 //consultar prodcuto por id
 router.get('/:id',async(req,res)=>{
     try{
-        const cliente=await Cliente.findById(req.params.id);
-        if (!cliente)return res.status(404).json({error: 'Producto no encontrado'});
-        res.json(cliente);
+        const factura=await Factura.findById(req.params.id);
+        if (!factura)return res.status(404).json({error: 'Producto no encontrado'});
+        res.json(factura);
 
     }catch(error){
         res.status(500).json({ error: error.menssage});

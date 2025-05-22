@@ -12,4 +12,4 @@ const conductorSchema=new mongoose.Schema({
     creadoEn:{type:Date,default:Date.now}
 });
 
-module.exports=mongoose.model('conductor',conductorSchema)
+module.exports=mongoose.model('conductores',conductorSchema)

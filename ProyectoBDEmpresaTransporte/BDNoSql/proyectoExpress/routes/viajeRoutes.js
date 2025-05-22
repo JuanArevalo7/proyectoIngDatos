@@ -1,19 +1,23 @@
 const express=require('express');
 const router=express.Router();
-const Cliente=require('../models/Viaje');
+const Viaje=require('../models/Viaje');
 
 
 //Registrar un usuario
-router.post('/',async(req,res)=>{
-    try{
-        const cliente=new Cliente(req.body);
-        await cliente.save();
-        res.status(201).json(cliente);
-
-    }catch(error){
-        res.status(400).json({ error: error.menssage});
-}
-})
+router.post('/', async (req, res) => {
+    try {
+        if (Array.isArray(req.body)) {
+            const viajes = await Viaje.insertMany(req.body);
+            res.status(201).json(viajes);
+        } else {
+            const viaje = new Viaje(req.body);
+            await viaje.save();
+            res.status(201).json(viaje);
+        }
+    } catch (error) {
+        res.status(400).json({ error: error.message });  // Corrección en message
+    }
+});
 
 //consultar todos los productos
 router.get('/', async (req, res) => {
@@ -23,8 +27,8 @@ router.get('/', async (req, res) => {
     let filtro = {};
     if (nombre) filtro.nombre = { $eq: nombre };
     if (edad) filtro.edad = { $gte: edad };
-    const clientes = await Cliente.find(filtro);
-    res.json(clientes);
+    const viajes = await Viaje.find(filtro);
+    res.json(viajes);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -34,9 +38,9 @@ router.get('/', async (req, res) => {
 //consultar prodcuto por id
 router.get('/:id',async(req,res)=>{
     try{
-        const cliente=await Cliente.findById(req.params.id);
-        if (!cliente)return res.status(404).json({error: 'Producto no encontrado'});
-        res.json(cliente);
+        const viaje=await Viaje.findById(req.params.id);
+        if (!viaje)return res.status(404).json({error: 'Producto no encontrado'});
+        res.json(viaje);
 
     }catch(error){
         res.status(500).json({ error: error.menssage});

@@ -5,9 +5,14 @@ const Vehiculo = require('../models/Vehiculo');
 // Registrar un vehículo
 router.post('/', async (req, res) => {
     try {
-        const vehiculo = new Vehiculo(req.body); 
-        await vehiculo.save();
-        res.status(201).json(vehiculo);
+        if (Array.isArray(req.body)) {
+            const vehiculos = await Vehiculo.insertMany(req.body);
+            res.status(201).json(vehiculos);
+        } else {
+            const vehiculo = new Vehiculo(req.body);
+            await vehiculo.save();
+            res.status(201).json(vehiculo);
+        }
     } catch (error) {
         res.status(400).json({ error: error.message }); 
     }
@@ -21,8 +26,8 @@ router.get('/', async (req, res) => {
       filtro.Precio = { $gte: Number(precio) };
     }
 
-    const productos = await Producto.find(filtro).sort({ Precio: -1 }); 
-    res.json(productos);
+    const vehiculo = await Vehiculo.find(filtro).sort({ Precio: -1 }); 
+    res.json(vehiculo);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -37,8 +42,8 @@ router.get('/', async (req, res) => {
       filtro.Precio = { $gte: Number(precio) }; 
     }
 
-    const productos = await Producto.find(filtro);
-    res.json(productos);
+    const vehiculos = await Vehiculo.find(filtro);
+    res.json(vehiculos);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -46,8 +51,8 @@ router.get('/', async (req, res) => {
 //consultar todos los productos
 router.get('/',async(req,res)=>{
     try{
-        const items=await Item.find();
-        res.json(items);
+        const vehiculos=await Vehiculo.find();
+        res.json(vehiculos);
 
     }catch(error){
         res.status(500).json({ error: error.menssage});
