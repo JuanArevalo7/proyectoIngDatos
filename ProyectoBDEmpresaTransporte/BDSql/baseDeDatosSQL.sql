@@ -52,6 +52,7 @@ idCLienteFK int ,
 idConductorFK int,
 idViajeFK int  ,
 idVehiculoFK INT ,
+FechaFacturacion DATE,
 CONSTRAINT llaveCliente FOREIGN KEY(idCLienteFK) REFERENCES CLIENTE(idCliente) ON DELETE SET NULL,
 CONSTRAINT llaveConductor FOREIGN KEY(idConductorFK) REFERENCES conductor(IdCOnductor) ON DELETE SET NULL,
 CONSTRAINT llaveViaje FOREIGN KEY(idViajeFK) REFERENCES viaje(IdViaje) ON DELETE SET NULL,
@@ -176,8 +177,9 @@ duracionEstimada like "%dia%";
 SELECT * FROM viajesLargos;
 /* MEJOR VISUALIZACION DE LAS FACTURAS*/
 CREATE VIEW facturaCompleta as
-SELECT f.valorViaje,f.utilidadesVIaje,v.lugarOrigen,v.lugarDestino,c.nombreConductor as "conductor" ,cl.nombreCliente ,ve.marcaVehiculo,
-ve.placaVehiculo  FROM factura f 
+SELECT f.valorViaje,f.utilidadesVIaje,v.lugarOrigen,v.lugarDestino,c.nombreConductor as "conductor" ,
+cl.nombreCliente ,ve.marcaVehiculo,
+ve.placaVehiculo  FROM factura f 	
 INNER JOIN viaje v on v.idVIaje=f.idViajeFK
 INNER JOIN conductor c on c.idConductor=f.idConductorFK
 INNER JOIN vehiculo ve on ve.idVehiculo=f.idVehiculoFK
@@ -378,24 +380,58 @@ INSERT INTO conductor (nombreConductor, docConductor, numViajes, numMultas, nume
 ('Elías Suárez', 1021478596, 6, 1, 3203214567, 'Nueva EPS', 'activo'),
 ('Rafael Mora', 1007891234, 0, 0, 3087894561, 'Coomeva', 'inactivo'),
 ('Ricardo Medina', 1014563210, 3, 0, 3093216547, 'Sura', 'activo');
-INSERT INTO factura (valorViaje, utilidadesViaje, idClienteFK, idConductorFK, idViajeFK, idVehiculoFK) VALUES
-(180000, 15000, 1, 3, 6, 9),(250000, 20000, 2, 4, 6, 10),(320000, 28000, 3, 5, 8, 9),
-(150000, 12000, 4, 3, 9, 12),(400000, 35000, 5, 3, 10, 13),(220000, 18000, 6, 6, 11, 9),
-(270000, 22000, 6, 6, 12, 15),(310000, 29000, 3, 4, 13, 16),(190000, 13000, 9, 7, 14, 17),
-(230000, 17000, 10, 4, 14, 18),(500000, 45000, 11, 5, 15, 19),(210000, 16000, 12, 5, 15, 20),
-(280000, 23000, 13, 8, 16, 19),(330000, 25000, 14, 9, 16, 22),(290000, 19000, 15, 3, 17, 23),
-(240000, 21000, 5, 4, 18, 23),(150000, 8000, 17, 6, 19, 25),(170000, 7000, 18, 7, 19, 25),
-(310000, 15000, 3, 3, 20, 27),(450000, 40000, 20, 3, 20, 28),(160000, 6000, 1, 4, 20, 28),
-(380000, 33000, 2, 5, 21, 28),(300000, 27000, 1, 6, 22, 29),(275000, 25000, 3, 6, 22, 29),
-(265000, 22000, 3, 6, 23, 30),(185000, 17000, 3, 6, 23, 30),(370000, 30000, 4, 6, 24, 30),
-(215000, 18000, 4, 6, 24, 30),(345000, 31000, 4, 6, 25, 30),(160000, 9000, 5, 3, 25, 30),
-(400000, 37000, 5, 3, 25, 30),(195000, 14000, 5, 3, 26, 31),(180000, 12000, 6, 4, 26, 31),
-(410000, 35000, 7, 5, 26, 31),(210000, 19000, 8, 5, 26, 31),(250000, 23000, 9, 5, 27, 32),
-(290000, 28000, 10, 5, 27, 32),(190000, 16000, 11, 5, 28, 32),(275000, 26000, 12, 5, 28, 32),
-(360000, 30000, 13, 5, 28, 32),(300000, 24000, 13, 6, 29, 32),(320000, 27000, 14, 6, 30, 32),
-(150000, 10000, 15, 6, 30, 32),(370000, 32000, 16, 7, 30, 32),(200000, 18000, 17, 7, 30, 32),
-(220000, 20000, 18, 7, 30, 32),(260000, 23000, 19, 7, 30, 32),(310000, 29000, 20, 7, 30, 32),
-(190000, 15000, 1, 3, 1, 1),(430000, 40000, 1, 3, 1, 1);
+INSERT INTO factura (valorViaje, utilidadesViaje, idClienteFK, idConductorFK, idViajeFK, idVehiculoFK, FechaFacturacion) VALUES
+(180000, 15000, 1, 3, 6, 9, '2024-04-08'),
+(250000, 20000, 2, 4, 6, 10, '2025-01-19'),
+(320000, 28000, 3, 5, 8, 9, '2024-11-20'),
+(150000, 12000, 4, 3, 9, 12, '2025-02-08'),
+(400000, 35000, 5, 3, 10, 13, '2024-12-13'),
+(220000, 18000, 6, 6, 11, 9, '2023-11-12'),
+(270000, 22000, 6, 6, 12, 15, '2024-09-01'),
+(310000, 29000, 3, 4, 13, 16, '2024-08-21'),
+(190000, 13000, 9, 7, 14, 17, '2025-03-15'),
+(230000, 17000, 10, 4, 14, 18, '2024-04-01'),
+(500000, 45000, 11, 5, 15, 19, '2025-01-26'),
+(210000, 16000, 12, 5, 15, 20, '2023-09-24'),
+(280000, 23000, 13, 8, 16, 19, '2024-05-05'),
+(330000, 25000, 14, 9, 16, 22, '2024-06-10'),
+(290000, 19000, 15, 3, 17, 23, '2024-11-12'),
+(240000, 21000, 5, 4, 18, 23, '2023-12-01'),
+(150000, 8000, 17, 6, 19, 25, '2024-03-03'),
+(170000, 7000, 18, 7, 19, 25, '2023-10-22'),
+(310000, 15000, 3, 3, 20, 27, '2024-01-01'),
+(450000, 40000, 20, 3, 20, 28, '2024-06-17'),
+(160000, 6000, 1, 4, 20, 28, '2023-08-05'),
+(380000, 33000, 2, 5, 21, 28, '2024-07-09'),
+(300000, 27000, 1, 6, 22, 29, '2025-04-10'),
+(275000, 25000, 3, 6, 22, 29, '2023-09-14'),
+(265000, 22000, 3, 6, 23, 30, '2024-10-30'),
+(185000, 17000, 3, 6, 23, 30, '2023-12-25'),
+(370000, 30000, 4, 6, 24, 30, '2023-11-05'),
+(215000, 18000, 4, 6, 24, 30, '2024-02-19'),
+(345000, 31000, 4, 6, 25, 30, '2024-05-17'),
+(160000, 9000, 5, 3, 25, 30, '2025-05-14'),
+(400000, 37000, 5, 3, 25, 30, '2024-09-14'),
+(195000, 14000, 5, 3, 26, 31, '2024-11-01'),
+(180000, 12000, 6, 4, 26, 31, '2023-10-05'),
+(410000, 35000, 7, 5, 26, 31, '2024-08-03'),
+(210000, 19000, 8, 5, 26, 31, '2024-02-12'),
+(250000, 23000, 9, 5, 27, 32, '2023-08-15'),
+(290000, 28000, 10, 5, 27, 32, '2024-01-20'),
+(190000, 16000, 11, 5, 28, 32, '2024-03-27'),
+(275000, 26000, 12, 5, 28, 32, '2024-12-05'),
+(360000, 30000, 13, 5, 28, 32, '2024-10-01'),
+(300000, 24000, 13, 6, 29, 32, '2023-11-28'),
+(320000, 27000, 14, 6, 30, 32, '2025-01-04'),
+(150000, 10000, 15, 6, 30, 32, '2024-07-28'),
+(370000, 32000, 16, 7, 30, 32, '2024-06-01'),
+(200000, 18000, 17, 7, 30, 32, '2023-09-09'),
+(220000, 20000, 18, 7, 30, 32, '2024-03-07'),
+(260000, 23000, 19, 7, 30, 32, '2024-05-21'),
+(310000, 29000, 20, 7, 30, 32, '2025-02-14'),
+(190000, 15000, 1, 3, 1, 1, '2024-10-14'),
+(430000, 40000, 1, 3, 1, 1, '2023-08-27');
+
 /* inserciones mas importantes*/
 INSERT INTO gastoFactura (idFacturaFK, idGastoFK, valorGasto) VALUES
 -- Factura 1 (valorViaje = 180000, utilidadesViaje = 15000 → gasto total = 165000)
@@ -612,9 +648,25 @@ SELECT * FROM mejorClientes;
 SELECT * FROM verMultas;
 SELECT * FROM mejorViaje;
 SELECT *  FROM origenMasComun;
-
+SELECT * from gastosDeUnaFactura;
 /* prueba del procedimiento almacendado*/
 CALL consultarMayorGasto(1);
 CALL consultarMayorGasto(2);
 SELECT * FROM CONDUCTOR;
-SELECT * FROM VEHICULO;
+SELECT * FROM cliente;
+SELECT * FROM gasto;
+UPDATE cliente
+set tipoCliente="juridico"
+WHERE idCliente=23;
+DELETE FROM CLIENTE
+WHERE idCliente=37;
+DELETE FROM CONDUCTOR
+WHERE idConductor=18;
+SELECT * FROM  GASTO
+where TipoGasto=2;
+SELECT * FROM CONDUCTOR
+where estadoConductor="inactivo";
+SELECT nombreConductor as "nombre Conductor",count(*) FROM Factura 
+INNER JOIN conductor on idCOnductorFK=idConductor
+group by idConductorFK 
+order by count(*) desc limit 1
