@@ -2,9 +2,10 @@ const mongoose=require('mongoose');
 
 
 const ViajeSchema=new mongoose.Schema({
+    idViaje:Number,
     lugarDestino:{type:String,require:true},
     lugarOrigen:String,
-    duracionEstimada:Number,
+    duracionEstimada:String,
     numEscalas:Number,
     creadoEn:{type:Date,default:Date.now}
 });

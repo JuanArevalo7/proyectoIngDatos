@@ -1,0 +1,302 @@
+[
+  {
+    "idFactura": 1,
+    "valorViaje": 180000,
+    "utilidadesViaje": 15000,
+    "idClienteFK": 1,
+    "idConductorFK": 3,
+    "idViajeFK": 6,
+    "idVehiculoFK": 9,
+    "FechaFacturacion": "2024-04-08"
+  },
+  {
+    "idFactura": 2,
+    "valorViaje": 250000,
+    "utilidadesViaje": 20000,
+    "idClienteFK": 2,
+    "idConductorFK": 4,
+    "idViajeFK": 6,
+    "idVehiculoFK": 10,
+    "FechaFacturacion": "2025-01-19"
+  },
+  {
+    "idFactura": 3,
+    "valorViaje": 320000,
+    "utilidadesViaje": 28000,
+    "idClienteFK": 3,
+    "idConductorFK": 5,
+    "idViajeFK": 8,
+    "idVehiculoFK": 9,
+    "FechaFacturacion": "2024-11-20"
+  },
+  {
+    "idFactura": 4,
+    "valorViaje": 150000,
+    "utilidadesViaje": 12000,
+    "idClienteFK": 4,
+    "idConductorFK": 3,
+    "idViajeFK": 9,
+    "idVehiculoFK": 12,
+    "FechaFacturacion": "2025-02-08"
+  },
+  {
+    "idFactura": 5,
+    "valorViaje": 400000,
+    "utilidadesViaje": 35000,
+    "idClienteFK": 5,
+    "idConductorFK": 3,
+    "idViajeFK": 10,
+    "idVehiculoFK": 13,
+    "FechaFacturacion": "2024-12-13"
+  },
+  {
+    "idFactura": 6,
+    "valorViaje": 220000,
+    "utilidadesViaje": 18000,
+    "idClienteFK": 6,
+    "idConductorFK": 6,
+    "idViajeFK": 11,
+    "idVehiculoFK": 9,
+    "FechaFacturacion": "2023-11-12"
+  },
+  {
+    "idFactura": 7,
+    "valorViaje": 270000,
+    "utilidadesViaje": 22000,
+    "idClienteFK": 6,
+    "idConductorFK": 6,
+    "idViajeFK": 12,
+    "idVehiculoFK": 15,
+    "FechaFacturacion": "2024-09-01"
+  },
+  {
+    "idFactura": 8,
+    "valorViaje": 310000,
+    "utilidadesViaje": 29000,
+    "idClienteFK": 3,
+    "idConductorFK": 4,
+    "idViajeFK": 13,
+    "idVehiculoFK": 16,
+    "FechaFacturacion": "2024-08-21"
+  },
+  {
+    "idFactura": 9,
+    "valorViaje": 190000,
+    "utilidadesViaje": 13000,
+    "idClienteFK": 9,
+    "idConductorFK": 7,
+    "idViajeFK": 14,
+    "idVehiculoFK": 17,
+    "FechaFacturacion": "2025-03-15"
+  },
+  {
+    "idFactura": 10,
+    "valorViaje": 230000,
+    "utilidadesViaje": 17000,
+    "idClienteFK": 10,
+    "idConductorFK": 4,
+    "idViajeFK": 14,
+    "idVehiculoFK": 18,
+    "FechaFacturacion": "2024-04-01"
+  },
+  {
+    "idFactura": 11,
+    "valorViaje": 500000,
+    "utilidadesViaje": 45000,
+    "idClienteFK": 11,
+    "idConductorFK": 5,
+    "idViajeFK": 15,
+    "idVehiculoFK": 19,
+    "FechaFacturacion": "2025-01-26"
+  },
+  {
+    "idFactura": 12,
+    "valorViaje": 210000,
+    "utilidadesViaje": 16000,
+    "idClienteFK": 12,
+    "idConductorFK": 5,
+    "idViajeFK": 15,
+    "idVehiculoFK": 20,
+    "FechaFacturacion": "2023-09-24"
+  },
+  {
+    "idFactura": 13,
+    "valorViaje": 280000,
+    "utilidadesViaje": 23000,
+    "idClienteFK": 13,
+    "idConductorFK": 8,
+    "idViajeFK": 16,
+    "idVehiculoFK": 19,
+    "FechaFacturacion": "2024-05-05"
+  },
+  {
+    "idFactura": 14,
+    "valorViaje": 330000,
+    "utilidadesViaje": 25000,
+    "idClienteFK": 14,
+    "idConductorFK": 9,
+    "idViajeFK": 16,
+    "idVehiculoFK": 22,
+    "FechaFacturacion": "2024-06-10"
+  },
+  {
+    "idFactura": 15,
+    "valorViaje": 290000,
+    "utilidadesViaje": 19000,
+    "idClienteFK": 15,
+    "idConductorFK": 3,
+    "idViajeFK": 17,
+    "idVehiculoFK": 23,
+    "FechaFacturacion": "2024-11-12"
+  },
+  {
+    "idFactura": 16,
+    "valorViaje": 240000,
+    "utilidadesViaje": 21000,
+    "idClienteFK": 5,
+    "idConductorFK": 4,
+    "idViajeFK": 18,
+    "idVehiculoFK": 23,
+    "FechaFacturacion": "2023-12-01"
+  },
+  {
+    "idFactura": 17,
+    "valorViaje": 150000,
+    "utilidadesViaje": 8000,
+    "idClienteFK": 17,
+    "idConductorFK": 6,
+    "idViajeFK": 19,
+    "idVehiculoFK": 25,
+    "FechaFacturacion": "2024-03-03"
+  },
+  {
+    "idFactura": 18,
+    "valorViaje": 170000,
+    "utilidadesViaje": 7000,
+    "idClienteFK": 18,
+    "idConductorFK": 7,
+    "idViajeFK": 19,
+    "idVehiculoFK": 25,
+    "FechaFacturacion": "2023-10-22"
+  },
+  {
+    "idFactura": 19,
+    "valorViaje": 310000,
+    "utilidadesViaje": 15000,
+    "idClienteFK": 3,
+    "idConductorFK": 3,
+    "idViajeFK": 20,
+    "idVehiculoFK": 27,
+    "FechaFacturacion": "2024-01-01"
+  },
+  {
+    "idFactura": 20,
+    "valorViaje": 450000,
+    "utilidadesViaje": 40000,
+    "idClienteFK": 20,
+    "idConductorFK": 3,
+    "idViajeFK": 20,
+    "idVehiculoFK": 28,
+    "FechaFacturacion": "2024-06-17"
+  },
+  {
+    "idFactura": 21,
+    "valorViaje": 160000,
+    "utilidadesViaje": 6000,
+    "idClienteFK": 1,
+    "idConductorFK": 4,
+    "idViajeFK": 20,
+    "idVehiculoFK": 28,
+    "FechaFacturacion": "2023-08-05"
+  },
+  {
+    "idFactura": 22,
+    "valorViaje": 380000,
+    "utilidadesViaje": 33000,
+    "idClienteFK": 2,
+    "idConductorFK": 5,
+    "idViajeFK": 21,
+    "idVehiculoFK": 28,
+    "FechaFacturacion": "2024-07-09"
+  },
+  {
+    "idFactura": 23,
+    "valorViaje": 300000,
+    "utilidadesViaje": 27000,
+    "idClienteFK": 1,
+    "idConductorFK": 6,
+    "idViajeFK": 22,
+    "idVehiculoFK": 29,
+    "FechaFacturacion": "2025-04-10"
+  },
+  {
+    "idFactura": 24,
+    "valorViaje": 275000,
+    "utilidadesViaje": 25000,
+    "idClienteFK": 3,
+    "idConductorFK": 6,
+    "idViajeFK": 22,
+    "idVehiculoFK": 29,
+    "FechaFacturacion": "2023-09-14"
+  },
+  {
+    "idFactura": 25,
+    "valorViaje": 265000,
+    "utilidadesViaje": 22000,
+    "idClienteFK": 3,
+    "idConductorFK": 6,
+    "idViajeFK": 23,
+    "idVehiculoFK": 30,
+    "FechaFacturacion": "2024-10-30"
+  },
+  {
+    "idFactura": 26,
+    "valorViaje": 185000,
+    "utilidadesViaje": 17000,
+    "idClienteFK": 3,
+    "idConductorFK": 6,
+    "idViajeFK": 23,
+    "idVehiculoFK": 30,
+    "FechaFacturacion": "2023-12-25"
+  },
+  {
+    "idFactura": 27,
+    "valorViaje": 370000,
+    "utilidadesViaje": 30000,
+    "idClienteFK": 4,
+    "idConductorFK": 6,
+    "idViajeFK": 24,
+    "idVehiculoFK": 30,
+    "FechaFacturacion": "2023-11-05"
+  },
+  {
+    "idFactura": 28,
+    "valorViaje": 215000,
+    "utilidadesViaje": 18000,
+    "idClienteFK": 4,
+    "idConductorFK": 6,
+    "idViajeFK": 24,
+    "idVehiculoFK": 30,
+    "FechaFacturacion": "2024-02-19"
+  },
+  {
+    "idFactura": 29,
+    "valorViaje": 345000,
+    "utilidadesViaje": 31000,
+    "idClienteFK": 4,
+    "idConductorFK": 6,
+    "idViajeFK": 25,
+    "idVehiculoFK": 30,
+    "FechaFacturacion": "2024-05-17"
+  },
+  {
+    "idFactura": 30,
+    "valorViaje": 160000,
+    "utilidadesViaje": 9000,
+    "idClienteFK": 5,
+    "idConductorFK": 3,
+    "idViajeFK": 25,
+    "idVehiculoFK": 30,
+    "FechaFacturacion": "2025-05-14"
+  }
+]

@@ -2,6 +2,7 @@ const mongoose=require('mongoose');
 
 
 const vehiculoSchema=new mongoose.Schema({
+    idVehiculo:Number,
     placaVehiculo:{type:String,require:true},
     colorVehiculo:String,
     marcaVehiculo:String,
