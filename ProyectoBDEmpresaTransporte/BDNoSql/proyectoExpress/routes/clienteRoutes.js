@@ -38,16 +38,15 @@ router.get('/', async (req, res) => {
 
 
 //consultar prodcuto por id
-router.get('/:id',async(req,res)=>{
-    try{
-        const cliente=await Cliente.findById(req.params.id);
-        if (!cliente)return res.status(404).json({error: 'Producto no encontrado'});
+router.get('/:idCliente', async (req, res) => {
+    try {
+        const cliente = await Cliente.findOne({ idCliente: req.params.idCliente });
+        if (!cliente) return res.status(404).json({ error: 'Cliente no encontrado' });
         res.json(cliente);
-
-    }catch(error){
-        res.status(500).json({ error: error.menssage});
-}
-})
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
 //modificar datos del producto 
 router.put('/:id',async(req,res)=>{
     try{
