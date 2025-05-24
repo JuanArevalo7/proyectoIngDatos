@@ -8,6 +8,7 @@ const gastoRoutes=require('./routes/gastoRoutes')
 const viajeRoutes=require('./routes/viajeRoutes')
 const clienteRoutes=require('./routes/clienteRoutes')
 const facturaSchema=require('./routes/facturaRoutes')
+const gastoFacturaRoutes=require('./routes/gastoFacturaRoutes')
 const app=express();
 const PORT=3000;
 
@@ -31,6 +32,7 @@ app.use('/api/Gasto',gastoRoutes);
 app.use('/api/Viaje',viajeRoutes);
 app.use('/api/Cliente',clienteRoutes);
 app.use('/api/Factura',facturaSchema);
+app.use('/api/GastoFactura',gastoFacturaRoutes);
 app.listen(PORT,()=>{
     console.log(`Servidor conectado en http://localhost:${PORT}`);
 });

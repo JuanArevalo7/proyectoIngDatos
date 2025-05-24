@@ -1,18 +1,18 @@
 const express=require('express');
 const router=express.Router();
-const Factura=require('../models/Factura');
+const Gasto=require('../models/GastoFactura');
 
 
 //Registrar un usuario
 router.post('/', async (req, res) => {
     try {
         if (Array.isArray(req.body)) {
-            const facturas = await Factura.insertMany(req.body);
-            res.status(201).json(facturas);
+            const gastos = await Gasto.insertMany(req.body);
+            res.status(201).json(gastos);
         } else {
-            const factura = new Factura(req.body);
-            await factura.save();
-            res.status(201).json(factura);
+            const gasto = new Gasto(req.body);
+            await gasto.save();
+            res.status(201).json(gasto);
         }
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -27,8 +27,8 @@ router.get('/', async (req, res) => {
     let filtro = {};
     if (nombre) filtro.nombre = { $eq: nombre };
     if (edad) filtro.edad = { $gte: edad };
-    const factura = await Factura.find(filtro);
-    res.json(factura);
+    const gasto = await Gasto.find(filtro);
+    res.json(gasto);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -38,32 +38,32 @@ router.get('/', async (req, res) => {
 //consultar prodcuto por id
 router.get('/:id',async(req,res)=>{
     try{
-        const factura=await Factura.findById(req.params.id);
-        if (!factura)return res.status(404).json({error: 'Producto no encontrado'});
-        res.json(factura);
+        const gasto=await Gasto.findById(req.params.id);
+        if (!gasto)return res.status(404).json({error: 'Producto no encontrado'});
+        res.json(gasto);
 
     }catch(error){
         res.status(500).json({ error: error.menssage});
 }
 })
+//modificar datos del producto 
 router.put('/:id',async(req,res)=>{
     try{
-        const factura=await Factura.findByIdAndUpdate(req.params.id, req.body,{new:true});
-        if (!factura)return res.status(404).json({error: 'Producto no encontrado'});
-        res.json(factura);
+        const gasto=await Gasto.findByIdAndUpdate(req.params.id, req.body,{new:true});
+        if (!gasto)return res.status(404).json({error: 'Producto no encontrado'});
+        res.json(gasto);
 
     }catch(error){
         res.status(500).json({ error: error.message});
 }
 })
-
 //eliminar un producto 
 
 router.delete('/:id',async(req,res)=>{
     try{
-        const factura=await Factura.findByIdAndDelete(req.params.id);
-        if (!factura)return res.status(404).json({error: 'Producto no encontrado'});
-        res.json(factura);
+        const gasto=await Gasto.findByIdAndDelete(req.params.id);
+        if (!gasto)return res.status(404).json({error: 'Producto no encontrado'});
+        res.json(gasto);
     
     }catch(error){
         res.status(500).json({ error: error.message})
