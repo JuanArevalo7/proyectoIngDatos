@@ -7,8 +7,8 @@ const conductorSchema=new mongoose.Schema({
     docConductor:Number,
     numViajes:Number,
     numMultas:Number,
-    numContacto:Number,
-    epsConductor:String,
+    numeroContacto:Number,
+    EpsConductor:String,
     estadoConductor:String,
     creadoEn:{type:Date,default:Date.now}
 });

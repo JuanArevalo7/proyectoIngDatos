@@ -1,13 +1,13 @@
 const express=require('express');
 const router=express.Router();
-const Gasto=require('../models/GastoFactura');
+const GastoFactura=require('../models/GastoFactura');
 
 
 //Registrar un usuario
 router.post('/', async (req, res) => {
     try {
         if (Array.isArray(req.body)) {
-            const gastos = await Gasto.insertMany(req.body);
+            const gastos = await GastoFactura.insertMany(req.body);
             res.status(201).json(gastos);
         } else {
             const gasto = new Gasto(req.body);
@@ -18,6 +18,107 @@ router.post('/', async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 });
+router.get('/valor/:idRegistro', async (req, res) => {
+  try {
+    const gasto = await GastoFactura.findOne(
+      { idRegistro: Number(req.params.idRegistro) },
+      { idGastoFK: 1, valorGasto: 1, _id: 0 }
+    );
+
+    if (!gasto) {
+      return res.status(404).json({ error: 'Registro no encontrado' });
+    }
+
+    res.json(gasto);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+router.get('/tipo/:idRegistro', async (req, res) => {
+  try {
+    const id = Number(req.params.idRegistro);
+
+    const resultado = await GastoFactura.aggregate([
+      {
+        $match: { idRegistro: id }
+      },
+      {
+        $lookup: {
+          from: 'gastos',
+          localField: 'idGastoFK',
+          foreignField: 'idGasto',
+          as: 'detalleGasto'
+        }
+      },
+      { $unwind: '$detalleGasto' },
+      {
+        $project: {
+          _id: 0,
+          idRegistro: 1,
+          tipoGasto: {
+            $switch: {
+              branches: [
+                { case: { $eq: ['$detalleGasto.tipoGasto', 1] }, then: 'Reparaciones' },
+                { case: { $eq: ['$detalleGasto.tipoGasto', 2] }, then: 'Multas' },
+                { case: { $eq: ['$detalleGasto.tipoGasto', 3] }, then: 'Otros' }
+              ],
+              default: 'Desconocido'
+            }
+          }
+        }
+      }
+    ]);
+
+    if (resultado.length === 0) {
+      return res.status(404).json({ error: 'Registro no encontrado' });
+    }
+
+    res.json(resultado[0]);
+
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.get('/descripcion/:idRegistro', async (req, res) => {
+  try {
+    const id = Number(req.params.idRegistro);
+
+    const resultado = await GastoFactura.aggregate([
+      {
+        $match: { idRegistro: id }
+      },
+      {
+        $lookup: {
+          from: 'gastos',  // nombre real de la colección en Mongo
+          localField: 'idGastoFK',
+          foreignField: 'idGasto',
+          as: 'detalleGasto'
+        }
+      },
+      {
+        $unwind: '$detalleGasto'
+      },
+      {
+        $project: {
+          _id: 0,
+          idRegistro: 1,
+          descripcionGasto: '$detalleGasto.descripcionGasto'
+        }
+      }
+    ]);
+
+    if (resultado.length === 0) {
+      return res.status(404).json({ error: 'Registro no encontrado' });
+    }
+
+    res.json(resultado[0]);
+
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 
 //consultar todos los productos
 router.get('/', async (req, res) => {
@@ -27,7 +128,7 @@ router.get('/', async (req, res) => {
     let filtro = {};
     if (nombre) filtro.nombre = { $eq: nombre };
     if (edad) filtro.edad = { $gte: edad };
-    const gasto = await Gasto.find(filtro);
+    const gasto = await GastoFactura.find(filtro);
     res.json(gasto);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -36,20 +137,20 @@ router.get('/', async (req, res) => {
 
 
 //consultar prodcuto por id
-router.get('/:id',async(req,res)=>{
-    try{
-        const gasto=await Gasto.findById(req.params.id);
-        if (!gasto)return res.status(404).json({error: 'Producto no encontrado'});
-        res.json(gasto);
+router.get('/:idRegistro', async (req, res) => {
+  try {
+    const gasto = await GastoFactura.findOne({ idRegistro: req.params.idRegistro });
+    if (!gasto) return res.status(404).json({ error: 'Gasto no encontrado' });
+    res.json(gasto);
+  } catch (error) {
+    res.status(500).json({ error: error.message }); 
+  }
+});
 
-    }catch(error){
-        res.status(500).json({ error: error.menssage});
-}
-})
 //modificar datos del producto 
 router.put('/:id',async(req,res)=>{
     try{
-        const gasto=await Gasto.findByIdAndUpdate(req.params.id, req.body,{new:true});
+        const gasto=await GastoFactura.findByIdAndUpdate(req.params.id, req.body,{new:true});
         if (!gasto)return res.status(404).json({error: 'Producto no encontrado'});
         res.json(gasto);
 
@@ -61,7 +162,7 @@ router.put('/:id',async(req,res)=>{
 
 router.delete('/:id',async(req,res)=>{
     try{
-        const gasto=await Gasto.findByIdAndDelete(req.params.id);
+        const gasto=await GastoFactura.findByIdAndDelete(req.params.id);
         if (!gasto)return res.status(404).json({error: 'Producto no encontrado'});
         res.json(gasto);
     

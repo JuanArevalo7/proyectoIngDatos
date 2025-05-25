@@ -18,6 +18,19 @@ router.post('/', async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 });
+router.get('/:idGasto', async (req, res) => {
+  try {
+    const gasto = await Gasto.findOne({ idGasto: Number(req.params.idGasto) });
+
+    if (!gasto) {
+      return res.status(404).json({ error: 'Gasto no encontrado' });
+    }
+
+    res.json(gasto);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 //consultar todos los productos
 router.get('/', async (req, res) => {
@@ -36,16 +49,7 @@ router.get('/', async (req, res) => {
 
 
 //consultar prodcuto por id
-router.get('/:id',async(req,res)=>{
-    try{
-        const gasto=await Gasto.findById(req.params.id);
-        if (!gasto)return res.status(404).json({error: 'Producto no encontrado'});
-        res.json(gasto);
 
-    }catch(error){
-        res.status(500).json({ error: error.menssage});
-}
-})
 //modificar datos del producto 
 router.put('/:id',async(req,res)=>{
     try{

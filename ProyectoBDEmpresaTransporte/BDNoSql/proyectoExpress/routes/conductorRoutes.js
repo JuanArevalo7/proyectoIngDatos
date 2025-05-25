@@ -19,17 +19,13 @@ router.post('/', async (req, res) => {
     }
 });
 
-
-
-//consultar todos los productos
-router.get('/', async (req, res) => {
+router.get('/info/:idConductor', async (req, res) => {
   try {
-    const { nombre, edad } = req.query;
-
-    let filtro = {};
-    if (nombre) filtro.nombre = { $eq: nombre };
-    if (edad) filtro.edad = { $gte: edad };
-    const conductor = await Conductor.find(filtro);
+    const conductor = await Conductor.findOne(
+      { idConductor: req.params.idConductor },
+      'nombreConductor EpsConductor' 
+    );
+    if (!conductor) return res.status(404).json({ error: 'Conductor no encontrado' });
     res.json(conductor);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -37,17 +33,105 @@ router.get('/', async (req, res) => {
 });
 
 
-//consultar prodcuto por id
-router.get('/:id',async(req,res)=>{
-    try{
-        const conductor=await Conductor.findById(req.params.id);
-        if (!conductor)return res.status(404).json({error: 'Producto no encontrado'});
-        res.json(conductor);
+//consultar todos los productos
+router.get('/', async (req, res) => {
+  try {
+    const { idConductor, nombre, edad } = req.query;
 
-    }catch(error){
-        res.status(500).json({ error: error.menssage});
-}
-})
+    let filtro = {};
+    if (idConductor) filtro.idConductor = { $eq: idConductor };
+    if (nombre) filtro.nombre = { $eq: nombre };
+    if (edad) filtro.edad = { $gte: edad }; // Si edad es numérica, asegúrate de convertirla
+
+    const conductores = await Conductor.find(filtro);
+    res.json(conductores);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+router.get('/:idConductor', async (req, res) => {
+  try {
+    const conductor = await Conductor.findOne({ idConductor: req.params.idConductor });
+    if (!conductor) return res.status(404).json({ error: 'Conductor no encontrado' });
+    res.json(conductor);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+router.get('/numViajes/:idConductor', async (req, res) => {
+  try {
+    const conductor = await Conductor.findOne(
+      { idConductor: Number(req.params.idConductor) },
+      'nombreConductor numViajes'
+    );
+
+    if (!conductor) return res.status(404).json({ error: 'Conductor no encontrado' });
+
+    res.json(conductor);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+router.get('/numMultas/:idConductor', async (req, res) => {
+  try {
+    const conductor = await Conductor.findOne(
+      { idConductor: Number(req.params.idConductor) },
+      'nombreConductor numMultas'
+    );
+
+    if (!conductor) return res.status(404).json({ error: 'Conductor no encontrado' });
+
+    res.json(conductor);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.put('/cambiarEps/:idConductor', async (req, res) => {
+  try {
+    const { EpsConductor } = req.body;
+    if (!EpsConductor) {
+      return res.status(400).json({ error: 'Falta el campo epsConductor' });
+    }
+
+    const actualizado = await Conductor.findOneAndUpdate(
+      { idConductor: Number(req.params.idConductor) },  
+      { EpsConductor: EpsConductor },                   
+      { new: true }                                     
+    );
+
+    if (!actualizado) {
+      return res.status(404).json({ error: 'Conductor no encontrado' });
+    }
+
+    res.json(actualizado);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+router.put('/numeroContacto/:idConductor', async (req, res) => {
+  try {
+    const { numeroContacto } = req.body;
+    if (numeroContacto === undefined) {
+      return res.status(400).json({ error: 'Falta el campo numeroContacto' });
+    }
+
+    const actualizado = await Conductor.findOneAndUpdate(
+      { idConductor: Number(req.params.idConductor) },
+      { numeroContacto: numeroContacto },
+      { new: true }
+    );
+
+    if (!actualizado) {
+      return res.status(404).json({ error: 'Conductor no encontrado' });
+    }
+
+    res.json(actualizado);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 //modificar datos del producto 
 router.put('/:id',async(req,res)=>{
     try{
@@ -59,6 +143,28 @@ router.put('/:id',async(req,res)=>{
         res.status(500).json({ error: error.message});
 }
 })
+router.put('/numMultas/:idConductor', async (req, res) => {
+  try {
+    const { numMultas } = req.body;
+    if (numMultas === undefined) {
+      return res.status(400).json({ error: 'Falta el campo numMultas' });
+    }
+
+    const actualizado = await Conductor.findOneAndUpdate(
+      { idConductor: Number(req.params.idConductor) },
+      { numMultas: numMultas },
+      { new: true }
+    );
+
+    if (!actualizado) {
+      return res.status(404).json({ error: 'Conductor no encontrado' });
+    }
+
+    res.json(actualizado);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 
 //eliminar un producto 
