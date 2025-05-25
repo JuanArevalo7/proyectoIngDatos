@@ -1,7 +1,7 @@
 const express=require('express');
 const router=express.Router();
 const Factura=require('../models/Factura');
-
+const GastoFactura = require('../models/GastoFactura');
 
 //Registrar un usuario
 router.post('/', async (req, res) => {
@@ -19,6 +19,163 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.get('/viajesFrecuentes', async (req, res) => {
+  try {
+    const resultado = await Factura.aggregate([
+      {
+        $group: {
+          _id: "$idViajeFK",
+          frecuencia: { $sum: 1 }
+        }
+      },
+      {
+        $sort: { frecuencia: -1 }
+      },
+      {
+        $limit: 5
+      },
+      {
+        $lookup: {
+          from: 'viajes', // nombre real de la colección
+          localField: '_id',
+          foreignField: 'idViaje',
+          as: 'infoViaje'
+        }
+      },
+      {
+        $unwind: "$infoViaje"
+      },
+      {
+        $project: {
+          _id: 0,
+          idViaje: "$_id",
+          frecuencia: 1,
+          lugarOrigen: "$infoViaje.lugarOrigen",
+          lugarDestino: "$infoViaje.lugarDestino",
+          duracionEstimada: "$infoViaje.duracionEstimada"
+        }
+      }
+    ]);
+
+    res.json(resultado);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+router.get('/viajesConductor/:idConductor', async (req, res) => {
+  try {
+    const idConductor = Number(req.params.idConductor);
+
+    const resultado = await Factura.aggregate([
+      { $match: { idConductorFK: idConductor } },
+      {
+        $lookup: {
+          from: 'viajes',  // nombre exacto de la colección de viajes en MongoDB
+          localField: 'idViajeFK',
+          foreignField: 'idViaje',
+          as: 'viaje'
+        }
+      },
+      { $unwind: '$viaje' },
+      {
+        $project: {
+          _id: 0,
+          idViaje: '$viaje.idViaje',
+          lugarOrigen: '$viaje.lugarOrigen',
+          lugarDestino: '$viaje.lugarDestino',
+          duracionEstimada: '$viaje.duracionEstimada',
+          numEscalas: '$viaje.numEscalas',
+          valorViaje: 1,
+          utilidadesViaje: 1
+        }
+      }
+    ]);
+
+    if (resultado.length === 0) {
+      return res.status(404).json({ error: 'No se encontraron viajes para ese conductor' });
+    }
+
+    res.json(resultado);
+
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.get('/origenComun', async (req, res) => {
+  try {
+    const resultado = await Factura.aggregate([
+      {
+        $lookup: {
+          from: 'viajes', // nombre de la colección viaje en MongoDB (probablemente en minúsculas y plural)
+          localField: 'idViajeFK',
+          foreignField: 'idViaje',
+          as: 'viaje'
+        }
+      },
+      { $unwind: "$viaje" },
+      {
+        $group: {
+          _id: "$viaje.lugarOrigen",
+          total: { $sum: 1 }
+        }
+      },
+      { $sort: { total: -1 } },
+      { $limit: 1 },
+      {
+        $project: {
+          _id: 0,
+          lugarOrigen: "$_id",
+          total: 1
+        }
+      }
+    ]);
+
+    if (resultado.length === 0) {
+      return res.status(404).json({ error: 'No hay registros de facturas o viajes' });
+    }
+
+    res.json(resultado[0]);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+router.get('/:idFactura/gastos', async (req, res) => {
+  try {
+    const idFactura = Number(req.params.idFactura);
+
+    const gastos = await GastoFactura.aggregate([
+      { $match: { idFacturaFK: idFactura } },
+      {
+        $lookup: {
+          from: 'gastos',           // nombre de la colección 'gastos' (plural y en minúsculas)
+          localField: 'idGastoFK',
+          foreignField: 'idGasto',
+          as: 'detalleGasto'
+        }
+      },
+      { $unwind: '$detalleGasto' },
+      {
+        $project: {
+          _id: 0,
+          idRegistro: 1,
+          valorGasto: 1,
+          descripcionGasto: '$detalleGasto.descripcionGasto',
+          nombreGasto: '$detalleGasto.nombreGasto',
+          tipoGasto: '$detalleGasto.tipoGasto'
+        }
+      }
+    ]);
+
+    if (gastos.length === 0) {
+      return res.status(404).json({ error: 'No se encontraron gastos para esta factura' });
+    }
+
+    res.json(gastos);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 //consultar todos los productos
 router.get('/', async (req, res) => {
   try {
@@ -74,6 +231,7 @@ router.get('/mejoresClientes', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
 router.get('/completa/:idFactura', async (req, res) => {
   try {
     const id = Number(req.params.idFactura);

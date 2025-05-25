@@ -75,7 +75,43 @@ router.get('/impuesto/:idVehiculo', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+router.get('/masReparaciones', async (req, res) => {
+  try {
+    const vehiculos = await Vehiculo.find({}, {
+      _id: 0,
+      idVehiculo: 1,
+      placaVehiculo: 1,
+      cantidadReparaciones: 1
+    })
+    .sort({ cantidadReparaciones: -1 }) // Orden descendente
+    .limit(5); // Solo los 5 primeros
 
+    if (vehiculos.length === 0) {
+      return res.status(404).json({ mensaje: 'No hay vehículos registrados con reparaciones' });
+    }
+
+    res.json(vehiculos);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.get('/estado/:idVehiculo', async (req, res) => {
+  try {
+    const vehiculo = await Vehiculo.findOne(
+      { idVehiculo: Number(req.params.idVehiculo) },
+      { _id: 0, placaVehiculo: 1, estadoVehiculo: 1 }
+    );
+
+    if (!vehiculo) {
+      return res.status(404).json({ error: 'Vehículo no encontrado' });
+    }
+
+    res.json(vehiculo);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 router.get('/:idVehiculo', async (req, res) => {
   try {

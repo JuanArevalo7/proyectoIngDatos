@@ -31,7 +31,37 @@ router.get('/info/:idConductor', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+router.get('/mejoresConductores', async (req, res) => {
+  try {
+    const conductores = await Conductor.find()
+      .sort({ numViajes: -1 })
+      .limit(5)
+      .select({ _id: 0, idConductor: 1, nombreConductor: 1, numViajes: 1 });
 
+    res.json(conductores);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.get('/multados', async (req, res) => {
+  try {
+    const conductores = await Conductor.find({ numMultas: { $gt: 1 } }, {
+      _id: 0,
+      idConductor: 1,
+      nombreConductor: 1,
+      numMultas: 1
+    });
+
+    if (conductores.length === 0) {
+      return res.status(404).json({ mensaje: 'No hay conductores con más de una multa' });
+    }
+
+    res.json(conductores);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 //consultar todos los productos
 router.get('/', async (req, res) => {
@@ -53,6 +83,21 @@ router.get('/:idConductor', async (req, res) => {
   try {
     const conductor = await Conductor.findOne({ idConductor: req.params.idConductor });
     if (!conductor) return res.status(404).json({ error: 'Conductor no encontrado' });
+    res.json(conductor);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.get('/estado/:idConductor', async (req, res) => {
+  try {
+    const conductor = await Conductor.findOne(
+      { idConductor: Number(req.params.idConductor) },
+      { _id: 0, nombreConductor: 1, estadoConductor: 1 }
+    );
+
+    if (!conductor) return res.status(404).json({ error: 'Conductor no encontrado' });
+
     res.json(conductor);
   } catch (error) {
     res.status(500).json({ error: error.message });

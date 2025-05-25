@@ -20,6 +20,24 @@ router.post('/', async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 });
+router.get('/contacto/:idCliente', async (req, res) => {
+  try {
+    const id = Number(req.params.idCliente);
+    const cliente = await Cliente.findOne(
+      { idCliente: id }, 
+      { _id: 0, contactoCliente: 1, nombreCliente: 1 }
+    );
+
+    if (!cliente) {
+      return res.status(404).json({ error: 'Cliente no encontrado' });
+    }
+
+    res.json(cliente);
+
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 //consultar todos los productos
 router.get('/', async (req, res) => {
@@ -36,7 +54,22 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/juridicos', async (req, res) => {
+  try {
+    const clientesJuridicos = await Cliente.find(
+      { tipoCliente: 'juridico' },
+      { _id: 0, idCliente: 1, nombreCliente: 1, nitCliente: 1 }
+    );
 
+    if (clientesJuridicos.length === 0) {
+      return res.status(404).json({ error: 'No se encontraron clientes jurídicos' });
+    }
+
+    res.json(clientesJuridicos);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 //consultar prodcuto por id
 router.get('/:idCliente', async (req, res) => {
     try {
