@@ -136,15 +136,17 @@ router.put('/:id',async(req,res)=>{
 
 //eliminar un producto 
 
-router.delete('/:id',async(req,res)=>{
-    try{
-        const viaje=await Viaje.findByIdAndDelete(req.params.id);
-        if (!viaje)return res.status(404).json({error: 'Producto no encontrado'});
-        res.json(viaje);
-    
-    }catch(error){
-        res.status(500).json({ error: error.message})
-    }
+router.delete('/:idViaje', async (req, res) => {
+  try {
+    const id = Number(req.params.idViaje);
+    const viaje = await Viaje.findOneAndDelete({ idViaje: id });
+
+    if (!viaje) return res.status(404).json({ error: 'Viaje no encontrado' });
+
+    res.json({ mensaje: 'Viaje eliminado correctamente', viaje });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 module.exports=router;

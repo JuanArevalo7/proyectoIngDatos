@@ -160,15 +160,19 @@ router.put('/:id',async(req,res)=>{
 })
 //eliminar un producto 
 
-router.delete('/:id',async(req,res)=>{
-    try{
-        const gasto=await GastoFactura.findByIdAndDelete(req.params.id);
-        if (!gasto)return res.status(404).json({error: 'Producto no encontrado'});
-        res.json(gasto);
-    
-    }catch(error){
-        res.status(500).json({ error: error.message})
+router.delete('/:idRegistro', async (req, res) => {
+  try {
+    const id = Number(req.params.idRegistro);
+    const registroEliminado = await GastoFactura.findOneAndDelete({ idRegistro: id });
+
+    if (!registroEliminado) {
+      return res.status(404).json({ error: 'Registro no encontrado' });
     }
+
+    res.json({ mensaje: 'GastoFactura eliminado correctamente', registro: registroEliminado });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 module.exports=router;

@@ -214,15 +214,19 @@ router.put('/numMultas/:idConductor', async (req, res) => {
 
 //eliminar un producto 
 
-router.delete('/:id',async(req,res)=>{
-    try{
-        const conductor=await Conductor.findByIdAndDelete(req.params.id);
-        if (!conductor)return res.status(404).json({error: 'Producto no encontrado'});
-        res.json(conductor);
-    
-    }catch(error){
-        res.status(500).json({ error: error.message})
+router.delete('/:idConductor', async (req, res) => {
+  try {
+    const id = Number(req.params.idConductor);
+    const deletedConductor = await Conductor.findOneAndDelete({ idConductor: id });
+
+    if (!deletedConductor) {
+      return res.status(404).json({ error: 'Conductor no encontrado' });
     }
+
+    res.json({ mensaje: 'Conductor eliminado correctamente', conductor: deletedConductor });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 module.exports=router;

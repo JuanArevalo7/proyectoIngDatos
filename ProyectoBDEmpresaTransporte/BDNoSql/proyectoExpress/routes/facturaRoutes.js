@@ -107,7 +107,7 @@ router.get('/origenComun', async (req, res) => {
     const resultado = await Factura.aggregate([
       {
         $lookup: {
-          from: 'viajes', // nombre de la colección viaje en MongoDB (probablemente en minúsculas y plural)
+          from: 'viajes', 
           localField: 'idViajeFK',
           foreignField: 'idViaje',
           as: 'viaje'
@@ -148,7 +148,7 @@ router.get('/:idFactura/gastos', async (req, res) => {
       { $match: { idFacturaFK: idFactura } },
       {
         $lookup: {
-          from: 'gastos',           // nombre de la colección 'gastos' (plural y en minúsculas)
+          from: 'gastos',           
           localField: 'idGastoFK',
           foreignField: 'idGasto',
           as: 'detalleGasto'
@@ -337,15 +337,19 @@ router.put('/:id',async(req,res)=>{
 
 //eliminar un producto 
 
-router.delete('/:id',async(req,res)=>{
-    try{
-        const factura=await Factura.findByIdAndDelete(req.params.id);
-        if (!factura)return res.status(404).json({error: 'Producto no encontrado'});
-        res.json(factura);
-    
-    }catch(error){
-        res.status(500).json({ error: error.message})
+router.delete('/:idFactura', async (req, res) => {
+  try {
+    const id = Number(req.params.idFactura);
+    const facturaEliminada = await Factura.findOneAndDelete({ idFactura: id });
+
+    if (!facturaEliminada) {
+      return res.status(404).json({ error: 'Factura no encontrada' });
     }
+
+    res.json({ mensaje: 'Factura eliminada correctamente', factura: facturaEliminada });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 module.exports=router;

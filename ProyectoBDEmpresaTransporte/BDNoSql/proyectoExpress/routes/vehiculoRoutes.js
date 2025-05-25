@@ -244,15 +244,19 @@ router.put('/estado/:idVehiculo', async (req, res) => {
 });
 
 
-router.delete('/:id',async(req,res)=>{
-    try{
-        const vehiculo=await Vehiculo.findByIdAndDelete(req.params.id);
-        if (!vehiculo)return res.status(404).json({error: 'Producto no encontrado'});
-        res.json(vehiculo);
-    
-    }catch(error){
-        res.status(500).json({ error: error.menssage})
+router.delete('/:idVehiculo', async (req, res) => {
+  try {
+    const id = Number(req.params.idVehiculo);
+    const vehiculoEliminado = await Vehiculo.findOneAndDelete({ idVehiculo: id });
+
+    if (!vehiculoEliminado) {
+      return res.status(404).json({ error: 'Vehículo no encontrado' });
     }
+
+    res.json({ mensaje: 'Vehículo eliminado correctamente', vehiculo: vehiculoEliminado });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 module.exports=router;

@@ -3,7 +3,7 @@ const router=express.Router();
 const Cliente=require('../models/Cliente');
 
 
-//Registrar un usuario
+//Registrar un clientee
 router.post('/', async (req, res) => {
     try {
         if (Array.isArray(req.body)) {
@@ -94,15 +94,18 @@ router.put('/:id',async(req,res)=>{
 
 //eliminar un producto 
 
-router.delete('/:id',async(req,res)=>{
-    try{
-        const cliente=await Cliente.findByIdAndDelete(req.params.id);
-        if (!cliente)return res.status(404).json({error: 'Producto no encontrado'});
-        res.json(cliente);
-    
-    }catch(error){
-        res.status(500).json({ error: error.message})
-    }
-});
+router.delete('/:idCliente', async (req, res) => {
+  try {
+    const id = Number(req.params.idCliente);
+    const deletedCliente = await Cliente.findOneAndDelete({ idCliente: id });
 
+    if (!deletedCliente) {
+      return res.status(404).json({ error: 'Cliente no encontrado' });
+    }
+
+    res.json({ mensaje: 'Cliente eliminado correctamente', cliente: deletedCliente });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 module.exports=router;
