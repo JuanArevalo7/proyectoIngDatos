@@ -1,6 +1,4 @@
 const mongoose=require('mongoose');
-
-
 const ClienteSchema=new mongoose.Schema({
     idCliente:Number,
     docCliente:{type:Number,require:true},
