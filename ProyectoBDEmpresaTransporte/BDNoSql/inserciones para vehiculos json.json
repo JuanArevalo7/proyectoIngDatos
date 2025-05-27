@@ -1,0 +1,452 @@
+[
+  {
+    "idVehiculo": 1,
+    "placaVehiculo": "SLF799",
+    "colorVehiculo": "Rojo",
+    "marcaVehiculo": "KIA",
+    "cantidadReparaciones": 1,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 95000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 2,
+    "placaVehiculo": "SLF044",
+    "colorVehiculo": "Negro",
+    "marcaVehiculo": "Mazda",
+    "cantidadReparaciones": 0,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 87000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 3,
+    "placaVehiculo": "SJP614",
+    "colorVehiculo": "Blanco",
+    "marcaVehiculo": "Chevrolet",
+    "cantidadReparaciones": 3,
+    "estadoVehiculo": "Inactivo",
+    "valorImpuesto": 120000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 4,
+    "placaVehiculo": "SDN758",
+    "colorVehiculo": "Gris",
+    "marcaVehiculo": "Hyundai",
+    "cantidadReparaciones": 2,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 110000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 5,
+    "placaVehiculo": "BRL123",
+    "colorVehiculo": "Rojo",
+    "marcaVehiculo": "Renault",
+    "cantidadReparaciones": 0,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 83000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 6,
+    "placaVehiculo": "FGH456",
+    "colorVehiculo": "Azul",
+    "marcaVehiculo": "Toyota",
+    "cantidadReparaciones": 0,
+    "estadoVehiculo": "Inactivo",
+    "valorImpuesto": 105000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 7,
+    "placaVehiculo": "MNB789",
+    "colorVehiculo": "Negro",
+    "marcaVehiculo": "Nissan",
+    "cantidadReparaciones": 4,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 99000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 8,
+    "placaVehiculo": "QWE234",
+    "colorVehiculo": "Verde",
+    "marcaVehiculo": "Ford",
+    "cantidadReparaciones": 1,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 98000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 9,
+    "placaVehiculo": "ASD567",
+    "colorVehiculo": "Blanco",
+    "marcaVehiculo": "Volkswagen",
+    "cantidadReparaciones": 0,
+    "estadoVehiculo": "Inactivo",
+    "valorImpuesto": 89000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 10,
+    "placaVehiculo": "ZXC890",
+    "colorVehiculo": "Gris",
+    "marcaVehiculo": "KIA",
+    "cantidadReparaciones": 2,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 102000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 11,
+    "placaVehiculo": "JKL321",
+    "colorVehiculo": "Rojo",
+    "marcaVehiculo": "Hyundai",
+    "cantidadReparaciones": 5,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 150000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 12,
+    "placaVehiculo": "UIO654",
+    "colorVehiculo": "Amarillo",
+    "marcaVehiculo": "Mazda",
+    "cantidadReparaciones": 0,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 92000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 13,
+    "placaVehiculo": "BNM987",
+    "colorVehiculo": "Azul",
+    "marcaVehiculo": "Chevrolet",
+    "cantidadReparaciones": 0,
+    "estadoVehiculo": "Inactivo",
+    "valorImpuesto": 91000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 14,
+    "placaVehiculo": "TGB159",
+    "colorVehiculo": "Negro",
+    "marcaVehiculo": "Renault",
+    "cantidadReparaciones": 3,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 132000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 15,
+    "placaVehiculo": "YHN753",
+    "colorVehiculo": "Gris",
+    "marcaVehiculo": "Toyota",
+    "cantidadReparaciones": 1,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 97000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 16,
+    "placaVehiculo": "EDC852",
+    "colorVehiculo": "Blanco",
+    "marcaVehiculo": "Nissan",
+    "cantidadReparaciones": 0,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 85000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 17,
+    "placaVehiculo": "WSX951",
+    "colorVehiculo": "Verde",
+    "marcaVehiculo": "KIA",
+    "cantidadReparaciones": 2,
+    "estadoVehiculo": "Inactivo",
+    "valorImpuesto": 115000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 18,
+    "placaVehiculo": "RFV357",
+    "colorVehiculo": "Rojo",
+    "marcaVehiculo": "Ford",
+    "cantidadReparaciones": 0,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 94000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 19,
+    "placaVehiculo": "TGB258",
+    "colorVehiculo": "Azul",
+    "marcaVehiculo": "Mazda",
+    "cantidadReparaciones": 4,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 140000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 20,
+    "placaVehiculo": "YHN456",
+    "colorVehiculo": "Gris",
+    "marcaVehiculo": "Hyundai",
+    "cantidadReparaciones": 1,
+    "estadoVehiculo": "Inactivo",
+    "valorImpuesto": 118000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 21,
+    "placaVehiculo": "UJM654",
+    "colorVehiculo": "Blanco",
+    "marcaVehiculo": "Chevrolet",
+    "cantidadReparaciones": 0,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 96000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 22,
+    "placaVehiculo": "IKM741",
+    "colorVehiculo": "Negro",
+    "marcaVehiculo": "Volkswagen",
+    "cantidadReparaciones": 3,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 125000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 23,
+    "placaVehiculo": "OLP369",
+    "colorVehiculo": "Rojo",
+    "marcaVehiculo": "Renault",
+    "cantidadReparaciones": 0,
+    "estadoVehiculo": "Inactivo",
+    "valorImpuesto": 87000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 24,
+    "placaVehiculo": "AQW147",
+    "colorVehiculo": "Amarillo",
+    "marcaVehiculo": "Toyota",
+    "cantidadReparaciones": 1,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 102000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 25,
+    "placaVehiculo": "SWD258",
+    "colorVehiculo": "Gris",
+    "marcaVehiculo": "Nissan",
+    "cantidadReparaciones": 2,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 112000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 26,
+    "placaVehiculo": "XED369",
+    "colorVehiculo": "Verde",
+    "marcaVehiculo": "Ford",
+    "cantidadReparaciones": 0,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 89000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 27,
+    "placaVehiculo": "CVF741",
+    "colorVehiculo": "Azul",
+    "marcaVehiculo": "KIA",
+    "cantidadReparaciones": 3,
+    "estadoVehiculo": "Inactivo",
+    "valorImpuesto": 135000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 28,
+    "placaVehiculo": "BGY852",
+    "colorVehiculo": "Rojo",
+    "marcaVehiculo": "Mazda",
+    "cantidadReparaciones": 0,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 93000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 29,
+    "placaVehiculo": "NHU963",
+    "colorVehiculo": "Negro",
+    "marcaVehiculo": "Hyundai",
+    "cantidadReparaciones": 4,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 145000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 30,
+    "placaVehiculo": "MKO159",
+    "colorVehiculo": "Blanco",
+    "marcaVehiculo": "Chevrolet",
+    "cantidadReparaciones": 1,
+    "estadoVehiculo": "Inactivo",
+    "valorImpuesto": 120000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 31,
+    "placaVehiculo": "PLM357",
+    "colorVehiculo": "Gris",
+    "marcaVehiculo": "Volkswagen",
+    "cantidadReparaciones": 0,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 91000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 32,
+    "placaVehiculo": "QAZ456",
+    "colorVehiculo": "Verde",
+    "marcaVehiculo": "Renault",
+    "cantidadReparaciones": 0,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 86000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 33,
+    "placaVehiculo": "WSX789",
+    "colorVehiculo": "Azul",
+    "marcaVehiculo": "Toyota",
+    "cantidadReparaciones": 5,
+    "estadoVehiculo": "Inactivo",
+    "valorImpuesto": 175000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 34,
+    "placaVehiculo": "EDC123",
+    "colorVehiculo": "Negro",
+    "marcaVehiculo": "Nissan",
+    "cantidadReparaciones": 1,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 98000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 35,
+    "placaVehiculo": "RFV456",
+    "colorVehiculo": "Rojo",
+    "marcaVehiculo": "KIA",
+    "cantidadReparaciones": 2,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 99000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 36,
+    "placaVehiculo": "TGB789",
+    "colorVehiculo": "Amarillo",
+    "marcaVehiculo": "Mazda",
+    "cantidadReparaciones": 0,
+    "estadoVehiculo": "Inactivo",
+    "valorImpuesto": 87000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 37,
+    "placaVehiculo": "YHN951",
+    "colorVehiculo": "Gris",
+    "marcaVehiculo": "Hyundai",
+    "cantidadReparaciones": 3,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 130000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 38,
+    "placaVehiculo": "UJM123",
+    "colorVehiculo": "Blanco",
+    "marcaVehiculo": "Chevrolet",
+    "cantidadReparaciones": 1,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 97000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 39,
+    "placaVehiculo": "IKM456",
+    "colorVehiculo": "Negro",
+    "marcaVehiculo": "Volkswagen",
+    "cantidadReparaciones": 2,
+    "estadoVehiculo": "Inactivo",
+    "valorImpuesto": 108000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 40,
+    "placaVehiculo": "OLP789",
+    "colorVehiculo": "Rojo",
+    "marcaVehiculo": "Ford",
+    "cantidadReparaciones": 0,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 92000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 41,
+    "placaVehiculo": "AQW963",
+    "colorVehiculo": "Verde",
+    "marcaVehiculo": "Renault",
+    "cantidadReparaciones": 3,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 134000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 42,
+    "placaVehiculo": "SWD147",
+    "colorVehiculo": "Azul",
+    "marcaVehiculo": "Toyota",
+    "cantidadReparaciones": 0,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 88000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 43,
+    "placaVehiculo": "XED258",
+    "colorVehiculo": "Gris",
+    "marcaVehiculo": "Nissan",
+    "cantidadReparaciones": 1,
+    "estadoVehiculo": "Inactivo",
+    "valorImpuesto": 101000,
+    "SoatVehiculo": "Pendiente"
+  },
+  {
+    "idVehiculo": 44,
+    "placaVehiculo": "CVF369",
+    "colorVehiculo": "Amarillo",
+    "marcaVehiculo": "KIA",
+    "cantidadReparaciones": 2,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 95000,
+    "SoatVehiculo": "Activo"
+  },
+  {
+    "idVehiculo": 45,
+    "placaVehiculo": "BGY147",
+    "colorVehiculo": "Rojo",
+    "marcaVehiculo": "Mazda",
+    "cantidadReparaciones": 4,
+    "estadoVehiculo": "Activo",
+    "valorImpuesto": 160000,
+    "SoatVehiculo": "Pendiente"
+  }
+]

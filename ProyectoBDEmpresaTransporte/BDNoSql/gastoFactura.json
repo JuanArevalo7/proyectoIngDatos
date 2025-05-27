@@ -1,0 +1,542 @@
+[
+  {
+    "idRegistro": 1,
+    "valorGasto": 50000,
+    "idFacturaFK": 1,
+    "idGastoFK": 1
+  },
+  {
+    "idRegistro": 2,
+    "valorGasto": 60000,
+    "idFacturaFK": 1,
+    "idGastoFK": 2
+  },
+  {
+    "idRegistro": 3,
+    "valorGasto": 55000,
+    "idFacturaFK": 1,
+    "idGastoFK": 3
+  },
+  {
+    "idRegistro": 4,
+    "valorGasto": 70000,
+    "idFacturaFK": 2,
+    "idGastoFK": 4
+  },
+  {
+    "idRegistro": 5,
+    "valorGasto": 80000,
+    "idFacturaFK": 2,
+    "idGastoFK": 5
+  },
+  {
+    "idRegistro": 6,
+    "valorGasto": 80000,
+    "idFacturaFK": 2,
+    "idGastoFK": 6
+  },
+  {
+    "idRegistro": 7,
+    "valorGasto": 90000,
+    "idFacturaFK": 3,
+    "idGastoFK": 7
+  },
+  {
+    "idRegistro": 8,
+    "valorGasto": 100000,
+    "idFacturaFK": 3,
+    "idGastoFK": 8
+  },
+  {
+    "idRegistro": 9,
+    "valorGasto": 102000,
+    "idFacturaFK": 3,
+    "idGastoFK": 9
+  },
+  {
+    "idRegistro": 10,
+    "valorGasto": 40000,
+    "idFacturaFK": 4,
+    "idGastoFK": 10
+  },
+  {
+    "idRegistro": 11,
+    "valorGasto": 46000,
+    "idFacturaFK": 4,
+    "idGastoFK": 11
+  },
+  {
+    "idRegistro": 12,
+    "valorGasto": 52000,
+    "idFacturaFK": 4,
+    "idGastoFK": 12
+  },
+  {
+    "idRegistro": 13,
+    "valorGasto": 120000,
+    "idFacturaFK": 5,
+    "idGastoFK": 13
+  },
+  {
+    "idRegistro": 14,
+    "valorGasto": 110000,
+    "idFacturaFK": 5,
+    "idGastoFK": 14
+  },
+  {
+    "idRegistro": 15,
+    "valorGasto": 135000,
+    "idFacturaFK": 5,
+    "idGastoFK": 15
+  },
+  {
+    "idRegistro": 16,
+    "valorGasto": 60000,
+    "idFacturaFK": 6,
+    "idGastoFK": 16
+  },
+  {
+    "idRegistro": 17,
+    "valorGasto": 70000,
+    "idFacturaFK": 6,
+    "idGastoFK": 17
+  },
+  {
+    "idRegistro": 18,
+    "valorGasto": 72000,
+    "idFacturaFK": 6,
+    "idGastoFK": 18
+  },
+  {
+    "idRegistro": 19,
+    "valorGasto": 85000,
+    "idFacturaFK": 7,
+    "idGastoFK": 19
+  },
+  {
+    "idRegistro": 20,
+    "valorGasto": 83000,
+    "idFacturaFK": 7,
+    "idGastoFK": 20
+  },
+  {
+    "idRegistro": 21,
+    "valorGasto": 80000,
+    "idFacturaFK": 7,
+    "idGastoFK": 21
+  },
+  {
+    "idRegistro": 22,
+    "valorGasto": 91000,
+    "idFacturaFK": 8,
+    "idGastoFK": 22
+  },
+  {
+    "idRegistro": 23,
+    "valorGasto": 95000,
+    "idFacturaFK": 8,
+    "idGastoFK": 23
+  },
+  {
+    "idRegistro": 24,
+    "valorGasto": 95000,
+    "idFacturaFK": 8,
+    "idGastoFK": 24
+  },
+  {
+    "idRegistro": 25,
+    "valorGasto": 60000,
+    "idFacturaFK": 9,
+    "idGastoFK": 25
+  },
+  {
+    "idRegistro": 26,
+    "valorGasto": 58000,
+    "idFacturaFK": 9,
+    "idGastoFK": 26
+  },
+  {
+    "idRegistro": 27,
+    "valorGasto": 59000,
+    "idFacturaFK": 9,
+    "idGastoFK": 27
+  },
+  {
+    "idRegistro": 28,
+    "valorGasto": 70000,
+    "idFacturaFK": 10,
+    "idGastoFK": 28
+  },
+  {
+    "idRegistro": 29,
+    "valorGasto": 72000,
+    "idFacturaFK": 10,
+    "idGastoFK": 29
+  },
+  {
+    "idRegistro": 30,
+    "valorGasto": 71000,
+    "idFacturaFK": 10,
+    "idGastoFK": 30
+  },
+  {
+    "idRegistro": 31,
+    "valorGasto": 200000,
+    "idFacturaFK": 11,
+    "idGastoFK": 31
+  },
+  {
+    "idRegistro": 32,
+    "valorGasto": 130000,
+    "idFacturaFK": 11,
+    "idGastoFK": 3
+  },
+  {
+    "idRegistro": 33,
+    "valorGasto": 125000,
+    "idFacturaFK": 11,
+    "idGastoFK": 6
+  },
+  {
+    "idRegistro": 34,
+    "valorGasto": 65000,
+    "idFacturaFK": 12,
+    "idGastoFK": 5
+  },
+  {
+    "idRegistro": 35,
+    "valorGasto": 66000,
+    "idFacturaFK": 12,
+    "idGastoFK": 8
+  },
+  {
+    "idRegistro": 36,
+    "valorGasto": 63000,
+    "idFacturaFK": 12,
+    "idGastoFK": 2
+  },
+  {
+    "idRegistro": 37,
+    "valorGasto": 88000,
+    "idFacturaFK": 13,
+    "idGastoFK": 6
+  },
+  {
+    "idRegistro": 38,
+    "valorGasto": 92000,
+    "idFacturaFK": 13,
+    "idGastoFK": 19
+  },
+  {
+    "idRegistro": 39,
+    "valorGasto": 77000,
+    "idFacturaFK": 13,
+    "idGastoFK": 7
+  },
+  {
+    "idRegistro": 40,
+    "valorGasto": 102000,
+    "idFacturaFK": 14,
+    "idGastoFK": 22
+  },
+  {
+    "idRegistro": 41,
+    "valorGasto": 99000,
+    "idFacturaFK": 14,
+    "idGastoFK": 4
+  },
+  {
+    "idRegistro": 42,
+    "valorGasto": 104000,
+    "idFacturaFK": 14,
+    "idGastoFK": 9
+  },
+  {
+    "idRegistro": 43,
+    "valorGasto": 90000,
+    "idFacturaFK": 15,
+    "idGastoFK": 15
+  },
+  {
+    "idRegistro": 44,
+    "valorGasto": 85000,
+    "idFacturaFK": 15,
+    "idGastoFK": 14
+  },
+  {
+    "idRegistro": 45,
+    "valorGasto": 96000,
+    "idFacturaFK": 15,
+    "idGastoFK": 13
+  },
+  {
+    "idRegistro": 46,
+    "valorGasto": 74000,
+    "idFacturaFK": 16,
+    "idGastoFK": 25
+  },
+  {
+    "idRegistro": 47,
+    "valorGasto": 73000,
+    "idFacturaFK": 16,
+    "idGastoFK": 21
+  },
+  {
+    "idRegistro": 48,
+    "valorGasto": 72000,
+    "idFacturaFK": 16,
+    "idGastoFK": 10
+  },
+  {
+    "idRegistro": 49,
+    "valorGasto": 45000,
+    "idFacturaFK": 17,
+    "idGastoFK": 16
+  },
+  {
+    "idRegistro": 50,
+    "valorGasto": 50000,
+    "idFacturaFK": 17,
+    "idGastoFK": 9
+  },
+  {
+    "idRegistro": 51,
+    "valorGasto": 47000,
+    "idFacturaFK": 17,
+    "idGastoFK": 18
+  },
+  {
+    "idRegistro": 52,
+    "valorGasto": 55000,
+    "idFacturaFK": 18,
+    "idGastoFK": 11
+  },
+  {
+    "idRegistro": 53,
+    "valorGasto": 54000,
+    "idFacturaFK": 18,
+    "idGastoFK": 3
+  },
+  {
+    "idRegistro": 54,
+    "valorGasto": 54000,
+    "idFacturaFK": 18,
+    "idGastoFK": 1
+  },
+  {
+    "idRegistro": 55,
+    "valorGasto": 98000,
+    "idFacturaFK": 19,
+    "idGastoFK": 5
+  },
+  {
+    "idRegistro": 56,
+    "valorGasto": 98000,
+    "idFacturaFK": 19,
+    "idGastoFK": 12
+  },
+  {
+    "idRegistro": 57,
+    "valorGasto": 99000,
+    "idFacturaFK": 19,
+    "idGastoFK": 17
+  },
+  {
+    "idRegistro": 58,
+    "valorGasto": 140000,
+    "idFacturaFK": 20,
+    "idGastoFK": 6
+  },
+  {
+    "idRegistro": 59,
+    "valorGasto": 135000,
+    "idFacturaFK": 20,
+    "idGastoFK": 19
+  },
+  {
+    "idRegistro": 60,
+    "valorGasto": 135000,
+    "idFacturaFK": 20,
+    "idGastoFK": 15
+  },
+  {
+    "idRegistro": 61,
+    "valorGasto": 51000,
+    "idFacturaFK": 21,
+    "idGastoFK": 2
+  },
+  {
+    "idRegistro": 62,
+    "valorGasto": 52000,
+    "idFacturaFK": 21,
+    "idGastoFK": 9
+  },
+  {
+    "idRegistro": 63,
+    "valorGasto": 51000,
+    "idFacturaFK": 21,
+    "idGastoFK": 1
+  },
+  {
+    "idRegistro": 64,
+    "valorGasto": 116000,
+    "idFacturaFK": 22,
+    "idGastoFK": 18
+  },
+  {
+    "idRegistro": 65,
+    "valorGasto": 117000,
+    "idFacturaFK": 22,
+    "idGastoFK": 10
+  },
+  {
+    "idRegistro": 66,
+    "valorGasto": 114000,
+    "idFacturaFK": 22,
+    "idGastoFK": 3
+  },
+  {
+    "idRegistro": 67,
+    "valorGasto": 92000,
+    "idFacturaFK": 23,
+    "idGastoFK": 31
+  },
+  {
+    "idRegistro": 68,
+    "valorGasto": 89000,
+    "idFacturaFK": 23,
+    "idGastoFK": 3
+  },
+  {
+    "idRegistro": 69,
+    "valorGasto": 92000,
+    "idFacturaFK": 23,
+    "idGastoFK": 1
+  },
+  {
+    "idRegistro": 70,
+    "valorGasto": 83000,
+    "idFacturaFK": 24,
+    "idGastoFK": 5
+  },
+  {
+    "idRegistro": 71,
+    "valorGasto": 83000,
+    "idFacturaFK": 24,
+    "idGastoFK": 8
+  },
+  {
+    "idRegistro": 72,
+    "valorGasto": 84000,
+    "idFacturaFK": 24,
+    "idGastoFK": 2
+  },
+  {
+    "idRegistro": 73,
+    "valorGasto": 81000,
+    "idFacturaFK": 25,
+    "idGastoFK": 6
+  },
+  {
+    "idRegistro": 74,
+    "valorGasto": 80000,
+    "idFacturaFK": 25,
+    "idGastoFK": 19
+  },
+  {
+    "idRegistro": 75,
+    "valorGasto": 82000,
+    "idFacturaFK": 25,
+    "idGastoFK": 7
+  },
+  {
+    "idRegistro": 76,
+    "valorGasto": 56000,
+    "idFacturaFK": 26,
+    "idGastoFK": 20
+  },
+  {
+    "idRegistro": 77,
+    "valorGasto": 56000,
+    "idFacturaFK": 26,
+    "idGastoFK": 17
+  },
+  {
+    "idRegistro": 78,
+    "valorGasto": 56000,
+    "idFacturaFK": 26,
+    "idGastoFK": 11
+  },
+  {
+    "idRegistro": 79,
+    "valorGasto": 113000,
+    "idFacturaFK": 27,
+    "idGastoFK": 12
+  },
+  {
+    "idRegistro": 80,
+    "valorGasto": 114000,
+    "idFacturaFK": 27,
+    "idGastoFK": 4
+  },
+  {
+    "idRegistro": 81,
+    "valorGasto": 113000,
+    "idFacturaFK": 27,
+    "idGastoFK": 22
+  },
+  {
+    "idRegistro": 82,
+    "valorGasto": 67000,
+    "idFacturaFK": 28,
+    "idGastoFK": 15
+  },
+  {
+    "idRegistro": 83,
+    "valorGasto": 65000,
+    "idFacturaFK": 28,
+    "idGastoFK": 14
+  },
+  {
+    "idRegistro": 84,
+    "valorGasto": 65000,
+    "idFacturaFK": 28,
+    "idGastoFK": 13
+  },
+  {
+    "idRegistro": 85,
+    "valorGasto": 104000,
+    "idFacturaFK": 29,
+    "idGastoFK": 25
+  },
+  {
+    "idRegistro": 86,
+    "valorGasto": 105000,
+    "idFacturaFK": 29,
+    "idGastoFK": 21
+  },
+  {
+    "idRegistro": 87,
+    "valorGasto": 105000,
+    "idFacturaFK": 29,
+    "idGastoFK": 10
+  },
+  {
+    "idRegistro": 88,
+    "valorGasto": 50000,
+    "idFacturaFK": 30,
+    "idGastoFK": 16
+  },
+  {
+    "idRegistro": 89,
+    "valorGasto": 51000,
+    "idFacturaFK": 30,
+    "idGastoFK": 9
+  },
+  {
+    "idRegistro": 90,
+    "valorGasto": 50000,
+    "idFacturaFK": 30,
+    "idGastoFK": 18
+  }
+]
